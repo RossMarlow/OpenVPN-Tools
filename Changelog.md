@@ -5,6 +5,6 @@
   - Optimized the process of writing to the log file (backend change).
 
 1.1.1.2
-  - Implemented server version checking. Queries available OpenVPN and Linux updates. Requires UpdateNotifier to be installed.
+  - Added "Query Server Version" check. Checks for available OpenVPN and Linux updates. Requires UpdateNotifier to be installed.
   - SSH connection fields are read only while connected.
   - Property fields are read only when not connected.
