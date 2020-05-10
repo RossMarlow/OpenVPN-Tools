@@ -4,12 +4,13 @@ I originally built this software for my fellow technicians to use. As an MSP, we
 
 This software has the below functions:
  - View MAC whitelist
- - Add/Update MAC
- - Remove MAC
- - Manage 2FA; View QR or Reset secret
- - Clear Lockouts
+ - Add/Update a whitelisted MAC
+ - Remove MAC from whitelist
+ - Manage 2FA; View existing QR code or reset secret
+ - Clear server lockouts
  - View POST_AUTH log
  - SSO into PuTTY session
+ - Check for server updates
  
 Both password and private key (with or without encryption) SSH authentication are supported.
 
