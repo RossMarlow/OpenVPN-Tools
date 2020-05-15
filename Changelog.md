@@ -1,5 +1,8 @@
 #OpenVPN Tools Changelog
 
+1.1.1.5
+  - Implemented dark mode. Controlled via a radio select in the preferences.
+
 1.1.1.4
   - Added a preferences window which can be launched via the gear icon in the top right
   - Implemented an idle timeout which disconnects the active SSH session if no functions are used within the set limit
