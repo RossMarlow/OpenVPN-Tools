@@ -2,7 +2,7 @@
 
 I originally built this software for my fellow technicians to use. As an MSP, we have a lot of OpenVPN servers to manage and whitelisting MAC addresses and completing basic functions was taking up a lot of their time via SSH consoles.
 
-### OpenVPN Tools Features
+### Current Features
  - Detailed log file for each VPN server
  - SSH port autofilled for past VPN servers
  - View MAC whitelist: Single user or all accounts
