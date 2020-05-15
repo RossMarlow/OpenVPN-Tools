@@ -2,19 +2,20 @@
 
 I originally built this software for my fellow technicians to use. As an MSP, we have a lot of OpenVPN servers to manage and whitelisting MAC addresses and completing basic functions was taking up a lot of their time via SSH consoles.
 
-### Current Features
- - Detailed log file for each VPN server
- - SSH port autofilled for past VPN servers
- - View MAC whitelist: Single user or all accounts
- - Add MAC to whitelist (& overwrite)
- - Remove MAC from whitelist
- - Manage 2FA: View existing QR code or reset secret
- - Clear server lockouts
- - View POST_AUTH log
- - SSO into PuTTY session
- - Check for server updates
- - Customizable idle disconnect
- - GUI dark mode
+### Features
+ [x] Detailed log file for each VPN server
+ [x] SSH port autofilled for past VPN servers
+ [x] View MAC whitelist: Single user or all accounts
+ [x] Add MAC to whitelist (& overwrite)
+ [x] Remove MAC from whitelist
+ [x] Manage 2FA: View existing QR code or reset secret
+ [x] Clear server lockouts
+ [x] View POST_AUTH log
+ [x] SSO into PuTTY session
+ [x] Check for server updates
+ [x] Customizable idle disconnect
+ [x] GUI dark mode
+ [ ] Log file retention policy
 
 Both password and private key (with or without encryption) SSH authentication are supported.
 
