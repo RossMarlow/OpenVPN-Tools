@@ -3,15 +3,18 @@
 1.1.1.5
   - Implemented dark mode. Controlled via a radio select in the preferences.
   - SSH port is stored in the server's log file and selecting the server from the hostname list will autofill the SSH port.
+  - Patch 1
+    - Hostname is added to the list when connecting to a server for the first time to fix the empty log file name bug.
+    - After disconnect the SSH Hostname list is repopulated to get them in to alphabetical order with the newly added server.
 
 1.1.1.4
-  - Added a preferences window which can be launched via the gear icon in the top right
-  - Implemented an idle timeout which disconnects the active SSH session if no functions are used within the set limit
-  - Added "SSH Idle Timeout" to the preferences to configure the time limit in minutes
-  - Preferences are written to the registry in HKCU\SOFTWARE\OpenVPN Tools
+  - Added a preferences window which can be launched via the gear icon in the top right.
+  - Implemented an idle timeout which disconnects the active SSH session if no functions are used within the set limit.
+  - Added "SSH Idle Timeout" to the preferences to configure the time limit in minutes.
+  - Preferences are written to the registry in HKCU\SOFTWARE\OpenVPN Tools.
   - Patch 1
-    - Set the minimum timeout to 1
-    - Create the registry key if it doesn't exist to prevent crashing on startup
+    - Set the minimum timeout to 1 minute.
+    - Create the registry key if it doesn't exist to prevent crashing on startup.
 
 1.1.1.3
   - Added a prerequisite check when querying server versions; If UpdateNotifier is not installed, it offers to install it.
