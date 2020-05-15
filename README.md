@@ -2,7 +2,7 @@
 
 I originally built this software for my fellow technicians to use. As an MSP, we have a lot of OpenVPN servers to manage and whitelisting MAC addresses and completing basic functions was taking up a lot of their time via SSH consoles.
 
-This software has the below functions:
+###OpenVPN Tools Features
  - View MAC whitelist
  - Add/Update a whitelisted MAC
  - Remove MAC from whitelist
@@ -11,6 +11,7 @@ This software has the below functions:
  - View POST_AUTH log
  - SSO into PuTTY session
  - Check for server updates
+ 
  
 Both password and private key (with or without encryption) SSH authentication are supported.
 
