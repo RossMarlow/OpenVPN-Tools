@@ -1,5 +1,3 @@
-#OpenVPN Tools Changelog
-
 1.1.1.5
   - Implemented dark mode. Controlled via a radio select in the preferences.
   - SSH port is stored in the server's log file and selecting the server from the hostname list will autofill the SSH port.
