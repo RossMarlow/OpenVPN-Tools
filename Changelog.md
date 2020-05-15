@@ -2,6 +2,7 @@
 
 1.1.1.5
   - Implemented dark mode. Controlled via a radio select in the preferences.
+  - SSH port is stored in the server's log file and selecting the server from the hostname list will autofill the SSH port.
 
 1.1.1.4
   - Added a preferences window which can be launched via the gear icon in the top right
