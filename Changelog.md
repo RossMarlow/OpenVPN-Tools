@@ -6,6 +6,7 @@
   - Patch 1
     - Hostname is added to the list when connecting to a server for the first time to fix the empty log file name bug.
     - After disconnect the SSH Hostname list is repopulated to get them in to alphabetical order with the newly added server.
+    - Reading the SSH port from the log file is no longer case sensitive.
 
 1.1.1.4
   - Added a preferences window which can be launched via the gear icon in the top right.
