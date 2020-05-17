@@ -1,3 +1,9 @@
+1.1.1.6
+  - Implemented 90 day log retention. Upon connecting to SSH log retention runs automatically to purge any lines older than 90 days from     the text file.
+  - If there's an error connecting the error is now displayed in the popup rather than just "Error Connecting"
+  - If the connection fails as the server refused, the error message suggests checking the ssh port
+  - If still connected when trying to close the program, it prompts to disconnect and cancels if No is selected.
+
 1.1.1.5
   - Implemented dark mode. Controlled via a radio select in the preferences.
   - SSH port is stored in the server's log file and selecting the server from the hostname list will autofill the SSH port.
