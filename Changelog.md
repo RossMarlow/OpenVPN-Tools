@@ -3,6 +3,8 @@
   - If there's an error connecting the error is now displayed in the popup rather than just "Error Connecting"
   - If the connection fails as the server refused, the error message suggests checking the ssh port
   - If still connected when trying to close the program, it prompts to disconnect and cancels if No is selected.
+  - Patch 1
+    - Fixed the formatting/line breaks in the output console when querying server versions.
 
 1.1.1.5
   - Implemented dark mode. Controlled via a radio select in the preferences.
