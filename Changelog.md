@@ -5,6 +5,9 @@
   - If still connected when trying to close the program, it prompts to disconnect and cancels if No is selected.
   - Patch 1
     - Fixed the formatting/line breaks in the output console when querying server versions.
+  - Patch 2
+    - Changed log entry "Warning" when deleting a MAC from a timestamped to indented line.
+    - Bug Fix: Requesting whitelist for a non-existent user displayed values from the last valid user rather than prompting that the           user doesn't exist.
 
 1.1.1.5
   - Implemented dark mode. Controlled via a radio select in the preferences.
