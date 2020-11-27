@@ -17,6 +17,7 @@ I originally built this software for my fellow technicians to use. As an MSP, we
  - [x] Customizable idle disconnect
  - [x] GUI dark mode
  - [x] Automated log retention (90 days)
+ - [ ] Custom FQDN Display Names
  - [ ] Revoke User Certificate
  - [ ] Delete User (Remove All Properties)
 
