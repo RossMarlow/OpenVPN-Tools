@@ -1,3 +1,6 @@
+1.1.7.0
+  - Implemented 'friendly' display names. When connecting to an IP the user is prompted for a display name. The actual SSH address is stored in the log file with the SSH port.
+
 1.1.6.0
   - Implemented 90 day log retention. Retention runs automatically on connection to purge any lines older than 90 days from the log.
   - If there's an error connecting the error is now displayed in the popup rather than just "Error Connecting"
