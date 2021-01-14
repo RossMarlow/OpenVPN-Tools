@@ -1,5 +1,8 @@
 1.1.7.0
   - Implemented 'friendly' display names. When connecting to an IP the user is prompted for a display name. The actual SSH address is stored in the log file with the SSH port.
+  - 1.1.7.1
+    - Fixed connecting to IP servers with friendly names
+    - Patched PuTTy SSO to IP servers with friendly names
 
 1.1.6.0
   - Implemented 90 day log retention. Retention runs automatically on connection to purge any lines older than 90 days from the log.
