@@ -1,3 +1,7 @@
+1.1.8.0
+  - Implented automatic MAC address formatting. If a MAC is entered with dashes rather than colons, and/or capital letters it's automatically re-formatted correctly
+  - Fixed a bug where the password is displayed in the input box when using password authentication
+
 1.1.7.0
   - Implemented 'friendly' display names. When connecting to an IP the user is prompted for a display name. The actual SSH address is stored in the log file with the SSH port.
   - 1.1.7.1
