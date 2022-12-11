@@ -10,6 +10,7 @@
   - Capibility added to delete a user from the OpenVPN Access Server
   - Fixed the bug where launched Notepad windows appear empty (Windows 11 issue)
   - Outputs previously forced to open in Notepad will now use the user's default text handler
+
 1.1.8.0
   - Implented automatic MAC address formatting. If a MAC is entered with dashes rather than colons, and/or capital letters it's automatically re-formatted correctly
   - Fixed a bug where the password is displayed in the input box when using password authentication
