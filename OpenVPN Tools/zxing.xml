@@ -306,24 +306,88 @@
             </summary>
             <author>Rustam Abdullaev</author>
         </member>
-        <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.Byte[])">
+        <member name="F:ZXing.Aztec.Internal.Encoder.DEFAULT_EC_PERCENT">
             <summary>
-            Encodes the given binary content as an Aztec symbol
+            default EC percent 33
+            </summary>
+        </member>
+        <member name="F:ZXing.Aztec.Internal.Encoder.DEFAULT_AZTEC_LAYERS">
+            <summary>
+            default layers 0
+            </summary>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.String)">
+            <summary>
+            Encodes the given string content as an Aztec symbol (without ECI code)
+            </summary>
+            <param name="data">input data string; must be encodable as ISO/IEC 8859-1 (Latin-1)</param>
+            <returns>Aztec symbol matrix with metadata</returns>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.String,System.Int32,System.Int32)">
+            <summary>
+            </summary>
+            <param name="data">input data string; must be encodable as ISO/IEC 8859-1 (Latin-1)</param>
+            <param name="minECCPercent">minimal percentage of error check words (According to ISO/IEC 24778:2008, a minimum of 23% + 3 words is recommended)</param>
+            <param name="userSpecifiedLayers">if non-zero, a user-specified value for the number of layers</param>
+            <returns>Aztec symbol matrix with metadata</returns>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.String,System.Int32,System.Int32,System.Text.Encoding)">
+            <summary>
+            Encodes the given string content as an Aztec symbol
             </summary>
             <param name="data">input data string</param>
+            <param name="minECCPercent">minimal percentage of error check words (According to ISO/IEC 24778:2008, a minimum of 23% + 3 words is recommended)</param>
+            <param name="userSpecifiedLayers">if non-zero, a user-specified value for the number of layers</param>
+            <param name="encoding">character set in which to encode string using ECI; if null, no ECI code will be inserted, and the string must be encodable as ISO/IEC 8859-1 (Latin-1), the default encoding of the symbol.</param>
+            <returns>Aztec symbol matrix with metadata</returns>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.String,System.Int32,System.Int32,System.Text.Encoding,System.Boolean)">
+            <summary>
+            Encodes the given string content as an Aztec symbol
+            </summary>
+            <param name="data">input data string</param>
+            <param name="minECCPercent">minimal percentage of error check words (According to ISO/IEC 24778:2008, a minimum of 23% + 3 words is recommended)</param>
+            <param name="userSpecifiedLayers">if non-zero, a user-specified value for the number of layers</param>
+            <param name="encoding">character set in which to encode string using ECI; if null, no ECI code will be inserted, and the string must be encodable as ISO/IEC 8859-1 (Latin-1), the default encoding of the symbol.</param>
+            <param name="disableEci">if true, dont't add ECI segment</param>
+            <returns>Aztec symbol matrix with metadata</returns>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.Byte[])">
+            <summary>
+            Encodes the given binary content as an Aztec symbol (without ECI code)
+            </summary>
+            <param name="data">input data</param>
             <returns>Aztec symbol matrix with metadata</returns>
         </member>
         <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.Byte[],System.Int32,System.Int32)">
             <summary>
+            Encodes the given binary content as an Aztec symbol (without ECI code)
+            </summary>
+            <param name="data">input data string</param>
+            <param name="minECCPercent">minimal percentage of error check words (According to ISO/IEC 24778:2008, a minimum of 23% + 3 words is recommended)</param>
+            <param name="userSpecifiedLayers">if non-zero, a user-specified value for the number of layers</param>
+            <returns>Aztec symbol matrix with metadata</returns>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.Byte[],System.Int32,System.Int32,System.Text.Encoding)">
+            <summary>
             Encodes the given binary content as an Aztec symbol
             </summary>
             <param name="data">input data string</param>
-            <param name="minECCPercent">minimal percentage of error check words (According to ISO/IEC 24778:2008,
-            a minimum of 23% + 3 words is recommended)</param>
+            <param name="minECCPercent">minimal percentage of error check words (According to ISO/IEC 24778:2008, a minimum of 23% + 3 words is recommended)</param>
             <param name="userSpecifiedLayers">if non-zero, a user-specified value for the number of layers</param>
-            <returns>
-            Aztec symbol matrix with metadata
-            </returns>
+            <param name="encoding">character set to mark using ECI; if null, no ECI code will be inserted, and the default encoding of ISO/IEC 8859-1 will be assuming by readers.</param>
+            <returns>Aztec symbol matrix with metadata</returns>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Encoder.encode(System.Byte[],System.Int32,System.Int32,System.Text.Encoding,System.Boolean)">
+            <summary>
+            Encodes the given binary content as an Aztec symbol
+            </summary>
+            <param name="data">input data string</param>
+            <param name="minECCPercent">minimal percentage of error check words (According to ISO/IEC 24778:2008, a minimum of 23% + 3 words is recommended)</param>
+            <param name="userSpecifiedLayers">if non-zero, a user-specified value for the number of layers</param>
+            <param name="encoding">character set to mark using ECI; if null, no ECI code will be inserted, and the default encoding of ISO/IEC 8859-1 will be assuming by readers.</param>
+            <param name="disableEci">if true, don't add ECI segment, regardless if encoding ist set</param>
+            <returns>Aztec symbol matrix with metadata</returns>
         </member>
         <member name="T:ZXing.Aztec.Internal.HighLevelEncoder">
             <summary>
@@ -343,11 +407,52 @@
             </summary>
             <param name="text"></param>
         </member>
+        <member name="M:ZXing.Aztec.Internal.HighLevelEncoder.#ctor(System.Byte[],System.Text.Encoding)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.HighLevelEncoder.#ctor(System.Byte[],System.Text.Encoding,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <param name="encoding"></param>
+            <param name="disableEci">if true, disable ECI segment</param>
+        </member>
         <member name="M:ZXing.Aztec.Internal.HighLevelEncoder.encode">
             <summary>
             Convert the text represented by this High Level Encoder into a BitArray.
             </summary>
             <returns>text represented by this encoder encoded as a <see cref="T:ZXing.Common.BitArray"/></returns>
+        </member>
+        <member name="T:ZXing.Aztec.Internal.SimpleToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.SimpleToken.#ctor(ZXing.Aztec.Internal.Token,System.Int32,System.Int32)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="previous"></param>
+            <param name="value"></param>
+            <param name="bitCount"></param>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.SimpleToken.appendTo(ZXing.Common.BitArray,System.Byte[])">
+            <summary>
+            append token to bitarray
+            </summary>
+            <param name="bitArray"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.SimpleToken.ToString">
+            <summary>
+            string representation
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ZXing.Aztec.Internal.State">
             <summary>
@@ -384,6 +489,50 @@
             Returns true if "this" state is better (or equal) to be in than "that"
             state under all possible circumstances.
             </summary>
+        </member>
+        <member name="T:ZXing.Aztec.Internal.Token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ZXing.Aztec.Internal.Token.EMPTY">
+            <summary>
+            represents an empty token
+            </summary>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Token.#ctor(ZXing.Aztec.Internal.Token)">
+            <summary>
+            constructor
+            </summary>
+            <param name="previous"></param>
+        </member>
+        <member name="P:ZXing.Aztec.Internal.Token.Previous">
+            <summary>
+            previous token
+            </summary>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Token.add(System.Int32,System.Int32)">
+            <summary>
+            adds a new simple token
+            </summary>
+            <param name="value"></param>
+            <param name="bitCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Token.addBinaryShift(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="start"></param>
+            <param name="byteCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Aztec.Internal.Token.appendTo(ZXing.Common.BitArray,System.Byte[])">
+            <summary>
+            append to bitarray
+            </summary>
+            <param name="bitArray"></param>
+            <param name="text"></param>
         </member>
         <member name="T:ZXing.Aztec.AztecReader">
             <summary>
@@ -450,9 +599,20 @@
             <param name="datablocks"></param>
             <param name="layers"></param>
         </member>
+        <member name="M:ZXing.Aztec.AztecResultMetadata.ToString">
+            <summary>
+            string represenation of that instance
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.Aztec.AztecWriter">
             <summary>
             Renders an Aztec code as a <see cref="T:ZXing.Common.BitMatrix" />
+            </summary>
+        </member>
+        <member name="F:ZXing.Aztec.AztecWriter.DEFAULT_CHARSET">
+            <summary>
+            default character set
             </summary>
         </member>
         <member name="M:ZXing.Aztec.AztecWriter.encode(System.String,ZXing.BarcodeFormat,System.Int32,System.Int32)">
@@ -479,6 +639,31 @@
             The generated barcode as a Matrix of unsigned bytes (0 == black, 255 == white)
             </returns>
         </member>
+        <member name="M:ZXing.Aztec.AztecWriter.encode(System.Byte[],ZXing.BarcodeFormat,System.Int32,System.Int32,System.Collections.Generic.IDictionary{ZXing.EncodeHintType,System.Object})">
+            <summary>
+            </summary>
+            <param name="contents">The contents to encode in the barcode</param>
+            <param name="format">The barcode format to generate</param>
+            <param name="width">The preferred width in pixels</param>
+            <param name="height">The preferred height in pixels</param>
+            <param name="hints">Additional parameters to supply to the encoder</param>
+            <returns>
+            The generated barcode as a Matrix of unsigned bytes (0 == black, 255 == white)
+            </returns>
+        </member>
+        <member name="M:ZXing.Aztec.AztecWriter.encode(System.Byte[],ZXing.BarcodeFormat,System.Int32,System.Int32,System.Text.Encoding,System.Collections.Generic.IDictionary{ZXing.EncodeHintType,System.Object})">
+            <summary>
+            </summary>
+            <param name="contents">The contents to encode in the barcode</param>
+            <param name="format">The barcode format to generate</param>
+            <param name="width">The preferred width in pixels</param>
+            <param name="height">The preferred height in pixels</param>
+            <param name="charset">Encoding of the byte array</param>
+            <param name="hints">Additional parameters to supply to the encoder</param>
+            <returns>
+            The generated barcode as a Matrix of unsigned bytes (0 == black, 255 == white)
+            </returns>
+        </member>
         <member name="T:ZXing.Aztec.AztecEncodingOptions">
             <summary>
             The class holds the available options for the <see cref="T:ZXing.Aztec.AztecWriter" />
@@ -496,6 +681,11 @@
             a negative number (-1, -2, -3, -4) specifies a compact Aztec code
             0 indicates to use the minimum number of layers (the default)
             a positive number (1, 2, .. 32) specifies a normal (non-compact) Aztec code
+            </summary>
+        </member>
+        <member name="P:ZXing.Aztec.AztecEncodingOptions.CharacterSet">
+            <summary>
+            Specifies what character encoding to use where applicable (type <see cref="T:System.String"/>)
             </summary>
         </member>
         <member name="T:ZXing.BarcodeFormat">
@@ -613,12 +803,12 @@
         </member>
         <member name="M:ZXing.BarcodeReader`1.#ctor(System.Func{`0,ZXing.LuminanceSource})">
             <summary>
-            Initializes a new instance of the <see cref="T:ZXing.BarcodeReader"/> class.
+            Initializes a new instance of the <see cref="T:ZXing.BarcodeReader`1"/> class.
             </summary>
         </member>
         <member name="M:ZXing.BarcodeReader`1.#ctor(ZXing.Reader,System.Func{`0,ZXing.LuminanceSource},System.Func{ZXing.LuminanceSource,ZXing.Binarizer})">
             <summary>
-            Initializes a new instance of the <see cref="T:ZXing.BarcodeReader"/> class.
+            Initializes a new instance of the <see cref="T:ZXing.BarcodeReader`1"/> class.
             </summary>
             <param name="reader">Sets the reader which should be used to find and decode the barcode.
             If null then MultiFormatReader is used</param>
@@ -629,7 +819,7 @@
         </member>
         <member name="M:ZXing.BarcodeReader`1.#ctor(ZXing.Reader,System.Func{`0,ZXing.LuminanceSource},System.Func{ZXing.LuminanceSource,ZXing.Binarizer},System.Func{System.Byte[],System.Int32,System.Int32,ZXing.RGBLuminanceSource.BitmapFormat,ZXing.LuminanceSource})">
             <summary>
-            Initializes a new instance of the <see cref="T:ZXing.BarcodeReader"/> class.
+            Initializes a new instance of the <see cref="T:ZXing.BarcodeReader`1"/> class.
             </summary>
             <param name="reader">Sets the reader which should be used to find and decode the barcode.
             If null then MultiFormatReader is used</param>
@@ -1210,12 +1400,73 @@
             </summary>
             <param name="bitmap">The bitmap.</param>
         </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValues(System.Drawing.Bitmap,System.Byte[])">
+            <summary>
+            calculates the luminance values for bitmaps
+            </summary>
+            <param name="bitmap"></param>
+            <param name="luminances"></param>
+        </member>
         <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValuesSlow(System.Drawing.Bitmap,System.Byte[])">
             <summary>
             old slow way for unsupported bit depth
             </summary>
             <param name="bitmap"></param>
             <param name="luminances"></param>
+        </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValuesForIndexed1Bit(System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Byte[])">
+            <summary>
+            calculates the luminance values for 1-bit indexed bitmaps
+            </summary>
+            <param name="bitmap"></param>
+            <param name="data"></param>
+            <param name="luminances"></param>
+        </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValuesForIndexed4Bit(System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Byte[])">
+            <summary>
+            calculates the luminance values for 4-bit indexed bitmaps
+            </summary>
+            <param name="bitmap"></param>
+            <param name="data"></param>
+            <param name="luminances"></param>
+        </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValuesForIndexed8Bit(System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Byte[])">
+            <summary>
+            calculates the luminance values for 8-bit indexed bitmaps
+            </summary>
+            <param name="bitmap"></param>
+            <param name="data"></param>
+            <param name="luminances"></param>
+        </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValues565(System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Byte[])">
+            <summary>
+            calculates the luminance values for 565 encoded bitmaps
+            </summary>
+            <param name="bitmap"></param>
+            <param name="data"></param>
+            <param name="luminances"></param>
+        </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValues24Bit(System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Byte[])">
+            <summary>
+            calculates the luminance values for 24-bit encoded bitmaps
+            </summary>
+            <param name="bitmap"></param>
+            <param name="data"></param>
+            <param name="luminances"></param>
+        </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValues32BitWithoutAlpha(System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Byte[])">
+            <summary>
+            calculates the luminance values for 32-bit encoded bitmaps without respecting the alpha channel
+            </summary>
+            <param name="bitmap"></param>
+            <param name="data"></param>
+            <param name="luminances"></param>
+        </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValues32BitWithAlpha(System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Byte[])">
+            calculates the luminance values for 32-bit encoded bitmaps with alpha channel
+        </member>
+        <member name="M:ZXing.BitmapLuminanceSource.CalculateLuminanceValues32BitCMYK(System.Drawing.Bitmap,System.Drawing.Imaging.BitmapData,System.Byte[])">
+            calculates the luminance values for 32-bit CMYK encoded bitmaps (k is ignored at the momen)
         </member>
         <member name="M:ZXing.BitmapLuminanceSource.CreateLuminanceSource(System.Byte[],System.Int32,System.Int32)">
             <summary>
@@ -1264,7 +1515,7 @@
             
             Our understanding of the MECARD format is based on this document:
             
-            http://www.mobicode.org.tw/files/OMIA%20Mobile%20Bar%20Code%20Standard%20v3.2.1.doc 
+            http://www.mobicode.org.tw/files/OMIA%20Mobile%20Bar%20Code%20Standard%20v3.2.1.doc
             
             </summary>
             <author>  Sean Owen
@@ -1370,6 +1621,11 @@
             the title
             </summary>
         </member>
+        <member name="P:ZXing.Client.Result.AddressBookParsedResult.Org">
+            <summary>
+            the organisations
+            </summary>
+        </member>
         <member name="P:ZXing.Client.Result.AddressBookParsedResult.URLs">
             <summary>
             the urls
@@ -1404,6 +1660,26 @@
              </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="M:ZXing.Client.Result.CalendarParsedResult.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String[],System.String,System.Double,System.Double)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="summary"></param>
+            <param name="startString"></param>
+            <param name="endString"></param>
+            <param name="durationString"></param>
+            <param name="location"></param>
+            <param name="organizer"></param>
+            <param name="attendees"></param>
+            <param name="description"></param>
+            <param name="latitude"></param>
+            <param name="longitude"></param>
+        </member>
+        <member name="P:ZXing.Client.Result.CalendarParsedResult.Summary">
+            <summary>
+            summary
+            </summary>
+        </member>
         <member name="P:ZXing.Client.Result.CalendarParsedResult.Start">
             <summary>
             Gets the start.
@@ -1425,6 +1701,36 @@
             Gets a value indicating whether this instance is end all day.
             </summary>
             <value>true if end time was specified as a whole day</value>
+        </member>
+        <member name="P:ZXing.Client.Result.CalendarParsedResult.Location">
+            <summary>
+            location
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.CalendarParsedResult.Organizer">
+            <summary>
+            organizer
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.CalendarParsedResult.Attendees">
+            <summary>
+            attendees
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.CalendarParsedResult.Description">
+            <summary>
+            description
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.CalendarParsedResult.Latitude">
+            <summary>
+            latitude
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.CalendarParsedResult.Longitude">
+            <summary>
+            longitude
+            </summary>
         </member>
         <member name="M:ZXing.Client.Result.CalendarParsedResult.parseDate(System.String)">
             <summary>
@@ -1729,6 +2035,60 @@
             </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="F:ZXing.Client.Result.ParsedResult.displayResultValue">
+            <summary>
+            user friendly value
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.ParsedResult.Type">
+            <summary>
+            gets the type of the parsed result
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.ParsedResult.DisplayResult">
+            <summary>
+            user friendly value
+            </summary>
+        </member>
+        <member name="M:ZXing.Client.Result.ParsedResult.#ctor(ZXing.Client.Result.ParsedResultType)">
+            <summary>
+            constructor
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:ZXing.Client.Result.ParsedResult.ToString">
+            <summary>
+            gets a user friendly value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Client.Result.ParsedResult.Equals(System.Object)">
+            <summary>
+            compare two objects
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Client.Result.ParsedResult.GetHashCode">
+            <summary>
+            gets the hashcode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Client.Result.ParsedResult.maybeAppend(System.String,System.Text.StringBuilder)">
+            <summary>
+            append to result if not null or empty
+            </summary>
+            <param name="value"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:ZXing.Client.Result.ParsedResult.maybeAppend(System.String[],System.Text.StringBuilder)">
+            <summary>
+            append to result if not null or empty
+            </summary>
+            <param name="values"></param>
+            <param name="result"></param>
+        </member>
         <member name="T:ZXing.Client.Result.ParsedResultType">
             <summary>
             Represents the type of data encoded by a barcode -- from plain text, to a
@@ -1736,11 +2096,81 @@
             </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.ADDRESSBOOK">
+            <summary>
+            address book
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.EMAIL_ADDRESS">
+            <summary>
+            email address
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.PRODUCT">
+            <summary>
+            product
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.URI">
+            <summary>
+            URI
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.TEXT">
+            <summary>
+            Text
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.GEO">
+            <summary>
+            geo coordinates
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.TEL">
+            <summary>
+            telefon
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.SMS">
+            <summary>
+            sms
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.CALENDAR">
+            <summary>
+            calendar
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.WIFI">
+            <summary>
+            wifi
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.ISBN">
+            <summary>
+            ISBN
+            </summary>
+        </member>
+        <member name="F:ZXing.Client.Result.ParsedResultType.VIN">
+            <summary>
+            VIN
+            </summary>
+        </member>
         <member name="T:ZXing.Client.Result.ProductParsedResult">
             <summary>
             Represents a parsed result that encodes a product by an identifier of some kind.
             </summary>
             <author>dswitkin@google.com (Daniel Switkin)</author>
+        </member>
+        <member name="P:ZXing.Client.Result.ProductParsedResult.ProductID">
+            <summary>
+            product id
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.ProductParsedResult.NormalizedProductID">
+            <summary>
+            normalized product id
+            </summary>
         </member>
         <member name="T:ZXing.Client.Result.ProductResultParser">
             <summary>
@@ -1775,6 +2205,48 @@
             <param name="theResult">The result.</param>
             <returns></returns>
         </member>
+        <member name="M:ZXing.Client.Result.ResultParser.maybeAppend(System.String,System.Text.StringBuilder)">
+            <summary>
+            append value to result, if not null
+            </summary>
+            <param name="value"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:ZXing.Client.Result.ResultParser.maybeAppend(System.String[],System.Text.StringBuilder)">
+            <summary>
+            append value to result, if not null
+            </summary>
+            <param name="value"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:ZXing.Client.Result.ResultParser.maybeWrap(System.String)">
+            <summary>
+            wrap, if not null
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Client.Result.ResultParser.unescapeBackslash(System.String)">
+            <summary>
+            unescape backslash
+            </summary>
+            <param name="escaped"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Client.Result.ResultParser.parseHexDigit(System.Char)">
+            <summary>
+            parse hex digit
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Client.Result.ResultParser.urlDecode(System.String)">
+            <summary>
+            decodes url
+            </summary>
+            <param name="escaped"></param>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.Client.Result.SMSMMSResultParser">
             <summary> <p>Parses an "sms:" URI result, which specifies a number to SMS and optional
             "via" number. See <a href="http://gbiv.com/protocols/uri/drafts/draft-antti-gsm-sms-url-04.txt">
@@ -1796,6 +2268,49 @@
             </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="M:ZXing.Client.Result.SMSParsedResult.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="number"></param>
+            <param name="via"></param>
+            <param name="subject"></param>
+            <param name="body"></param>
+        </member>
+        <member name="M:ZXing.Client.Result.SMSParsedResult.#ctor(System.String[],System.String[],System.String,System.String)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="numbers"></param>
+            <param name="vias"></param>
+            <param name="subject"></param>
+            <param name="body"></param>
+        </member>
+        <member name="P:ZXing.Client.Result.SMSParsedResult.Numbers">
+            <summary>
+            numbers
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.SMSParsedResult.Vias">
+            <summary>
+             vias
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.SMSParsedResult.Subject">
+            <summary>
+            subject
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.SMSParsedResult.Body">
+            <summary>
+            body
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.SMSParsedResult.SMSURI">
+            <summary>
+            sms uri
+            </summary>
+        </member>
         <member name="T:ZXing.Client.Result.SMSTOMMSTOResultParser">
             <summary>
             <p>Parses an "smsto:" URI result, whose format is not standardized but appears to be like:
@@ -1806,6 +2321,13 @@
             </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="M:ZXing.Client.Result.SMSTOMMSTOResultParser.parse(ZXing.Result)">
+            <summary>
+            attempt to parse the raw result to the specific type
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.Client.Result.SMTPResultParser">
             <summary>
             <p>Parses an "smtp:" URI result, whose format is not standardized but appears to be like:
@@ -1814,11 +2336,41 @@
             </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="M:ZXing.Client.Result.SMTPResultParser.parse(ZXing.Result)">
+            <summary>
+            attempt to parse the raw result to the specific type
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.Client.Result.TelParsedResult">
             <summary>
             Represents a parsed result that encodes a telephone number.
             </summary>
             <author>Sean Owen</author>
+        </member>
+        <member name="M:ZXing.Client.Result.TelParsedResult.#ctor(System.String,System.String,System.String)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="number"></param>
+            <param name="telURI"></param>
+            <param name="title"></param>
+        </member>
+        <member name="P:ZXing.Client.Result.TelParsedResult.Number">
+            <summary>
+            number
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.TelParsedResult.TelURI">
+            <summary>
+            URI
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.TelParsedResult.Title">
+            <summary>
+            title
+            </summary>
         </member>
         <member name="T:ZXing.Client.Result.TelResultParser">
             <summary>
@@ -1835,11 +2387,38 @@
             </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="M:ZXing.Client.Result.TextParsedResult.#ctor(System.String,System.String)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="text"></param>
+            <param name="language"></param>
+        </member>
+        <member name="P:ZXing.Client.Result.TextParsedResult.Text">
+            <summary>
+            text
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.TextParsedResult.Language">
+            <summary>
+            language
+            </summary>
+        </member>
         <member name="T:ZXing.Client.Result.URIParsedResult">
             <summary>
             A simple result type encapsulating a URI that has no further interpretation.
             </summary>
             <author>Sean Owen</author>
+        </member>
+        <member name="P:ZXing.Client.Result.URIParsedResult.URI">
+            <summary>
+            URI
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.URIParsedResult.Title">
+            <summary>
+            title
+            </summary>
         </member>
         <member name="P:ZXing.Client.Result.URIParsedResult.PossiblyMaliciousURI">
             <returns> true if the URI contains suspicious patterns that may suggest it intends to
@@ -1849,6 +2428,13 @@
             http://yourbank.com@phisher.com  This URI connects to phisher.com but may appear
             to connect to yourbank.com at first glance.
             </returns>
+        </member>
+        <member name="M:ZXing.Client.Result.URIParsedResult.#ctor(System.String,System.String)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="uri"></param>
+            <param name="title"></param>
         </member>
         <member name="M:ZXing.Client.Result.URIParsedResult.massageURI(System.String)">
             <summary> Transforms a string that represents a URI into something more proper, by adding or canonicalizing
@@ -1908,11 +2494,82 @@
             Represents a parsed result that encodes a Vehicle Identification Number (VIN).
             </summary>
         </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.VIN">
+            <summary>
+            VIN
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.WorldManufacturerID">
+            <summary>
+            manufacturer id
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.VehicleDescriptorSection">
+            <summary>
+            vehicle descriptor section
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.VehicleIdentifierSection">
+            <summary>
+            vehicle identifier section
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.CountryCode">
+            <summary>
+            country code
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.VehicleAttributes">
+            <summary>
+            vehicle attributes
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.ModelYear">
+            <summary>
+            model year
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.PlantCode">
+            <summary>
+            plant code
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.SequentialNumber">
+            <summary>
+            sequential number
+            </summary>
+        </member>
+        <member name="M:ZXing.Client.Result.VINParsedResult.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.Char,System.String)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="vin"></param>
+            <param name="worldManufacturerID"></param>
+            <param name="vehicleDescriptorSection"></param>
+            <param name="vehicleIdentifierSection"></param>
+            <param name="countryCode"></param>
+            <param name="vehicleAttributes"></param>
+            <param name="modelYear"></param>
+            <param name="plantCode"></param>
+            <param name="sequentialNumber"></param>
+        </member>
+        <member name="P:ZXing.Client.Result.VINParsedResult.DisplayResult">
+            <summary>
+            a user friendly representation
+            </summary>
+        </member>
         <member name="T:ZXing.Client.Result.VINResultParser">
             <summary>
             Detects a result that is likely a vehicle identification number.
             @author Sean Owen
             </summary>
+        </member>
+        <member name="M:ZXing.Client.Result.VINResultParser.parse(ZXing.Result)">
+            <summary>
+            attempt to parse the raw result to the specific type
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
         </member>
         <member name="T:ZXing.Client.Result.WifiParsedResult">
             <summary>
@@ -1920,7 +2577,96 @@
             </summary>
             <author>Vikram Aggarwal</author>
         </member>
-        <!-- Ungültiger XML-Kommentar wurde für den Member "T:ZXing.Client.Result.WifiResultParser" ignoriert -->
+        <member name="M:ZXing.Client.Result.WifiParsedResult.#ctor(System.String,System.String,System.String)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="networkEncryption"></param>
+            <param name="ssid"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:ZXing.Client.Result.WifiParsedResult.#ctor(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="networkEncryption"></param>
+            <param name="ssid"></param>
+            <param name="password"></param>
+            <param name="hidden"></param>
+        </member>
+        <member name="M:ZXing.Client.Result.WifiParsedResult.#ctor(System.String,System.String,System.String,System.Boolean,System.String,System.String,System.String,System.String)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="networkEncryption"></param>
+            <param name="ssid"></param>
+            <param name="password"></param>
+            <param name="hidden"></param>
+            <param name="identity"></param>
+            <param name="anonymousIdentity"></param>
+            <param name="eapMethod"></param>
+            <param name="phase2Method"></param>
+        </member>
+        <member name="P:ZXing.Client.Result.WifiParsedResult.Ssid">
+            <summary>
+            SSID
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.WifiParsedResult.NetworkEncryption">
+            <summary>
+            network encryption
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.WifiParsedResult.Password">
+            <summary>
+            password
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.WifiParsedResult.Hidden">
+            <summary>
+            hidden flag
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.WifiParsedResult.Identity">
+            <summary>
+            identity
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.WifiParsedResult.AnonymousIdentity">
+            <summary>
+            anonymous
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.WifiParsedResult.EapMethod">
+            <summary>
+            eap
+            </summary>
+        </member>
+        <member name="P:ZXing.Client.Result.WifiParsedResult.Phase2Method">
+            <summary>
+            phase 2 method
+            </summary>
+        </member>
+        <member name="T:ZXing.Client.Result.WifiResultParser">
+            <summary>
+            <p>Parses a WIFI configuration string. Strings will be of the form:</p>
+            <p>{@code WIFI:T:[network type];S:[network SSID];P:[network password];H:[hidden?];;}</p>
+            <p>The fields can appear in any order. Only "S:" is required.</p>
+            <p>For WPA2 enterprise(EAP), strings will be of the form:</p>
+            <p>{@code WIFI:T:WPA2-EAP;S:[network SSID];H:[hidden?];E:[EAP method];PH2:[Phase 2 method];A:[anonymous identity];I:[username];P:[password];;}</p>
+            <p>"EAP method" can e.g.be "TTLS" or "PWD" or one of the other fields in <a href = "https://developer.android.com/reference/android/net/wifi/WifiEnterpriseConfig.Eap.html"> WifiEnterpriseConfig.Eap </a> and "Phase 2 method" can e.g.be "MSCHAPV2" or any of the other fields in <a href = "https://developer.android.com/reference/android/net/wifi/WifiEnterpriseConfig.Phase2.html"> WifiEnterpriseConfig.Phase2 </a></p>
+            </summary>
+            <author>Vikram Aggarwal</author>
+            <author>Sean Owen</author>
+            <author>Steffen Kieß</author>
+        </member>
+        <member name="M:ZXing.Client.Result.WifiResultParser.parse(ZXing.Result)">
+            <summary>
+            attempt to parse the raw result to the specific type
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.Common.BitArray">
             <summary>
             A simple, fast array of bits, represented compactly by an array of ints internally.
@@ -2143,6 +2889,15 @@
             <param name="image">bits of the image, as a row-major 2D array. Elements are arrays representing rows</param>
             <returns><see cref="T:ZXing.Common.BitMatrix"/> representation of image</returns>
         </member>
+        <member name="M:ZXing.Common.BitMatrix.parse(System.String,System.String,System.String)">
+            <summary>
+            parse the string representation to a bitmatrix
+            </summary>
+            <param name="stringRepresentation"></param>
+            <param name="setString"></param>
+            <param name="unsetString"></param>
+            <returns></returns>
+        </member>
         <member name="P:ZXing.Common.BitMatrix.Item(System.Int32,System.Int32)">
             <summary> <p>Gets the requested bit, where true means black.</p>
             
@@ -2160,6 +2915,11 @@
             </summary>
             <param name="x">The horizontal component (i.e. which column)</param>
             <param name="y">The vertical component (i.e. which row)</param>
+        </member>
+        <member name="M:ZXing.Common.BitMatrix.flip">
+            <summary>
+            <p>Flips every bit in the matrix.</p>
+            </summary>
         </member>
         <member name="M:ZXing.Common.BitMatrix.flipWhen(System.Func{System.Int32,System.Int32,System.Boolean})">
             <summary>
@@ -2214,6 +2974,11 @@
             Modifies this {@code BitMatrix} to represent the same but rotated 180 degrees
             </summary>
         </member>
+        <member name="M:ZXing.Common.BitMatrix.rotate90">
+            <summary>
+            Modifies this {@code BitMatrix} to represent the same but rotated 90 degrees counterclockwise
+            </summary>
+        </member>
         <member name="M:ZXing.Common.BitMatrix.getEnclosingRectangle">
             <summary>
             This is useful in detecting the enclosing rectangle of a 'pure' barcode.
@@ -2225,6 +2990,12 @@
             This is useful in detecting a corner of a 'pure' barcode.
             </summary>
             <returns>{x,y} coordinate of top-left-most 1 bit, or null if it is all white</returns>
+        </member>
+        <member name="M:ZXing.Common.BitMatrix.getBottomRightOnBit">
+            <summary>
+            bottom right
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ZXing.Common.BitMatrix.Equals(System.Object)">
             <summary>
@@ -2275,6 +3046,12 @@
         <member name="M:ZXing.Common.BitMatrix.Clone">
             <summary>
             Clones this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Common.BitMatrix.ToBitmap">
+            <summary>
+            
             </summary>
             <returns></returns>
         </member>
@@ -2331,13 +3108,38 @@
             </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="P:ZXing.Common.CharacterSetECI.EncodingName">
+            <summary>
+            encoding name
+            </summary>
+        </member>
         <member name="M:ZXing.Common.CharacterSetECI.getCharacterSetECIByValue(System.Int32)">
             <param name="value">character set ECI value</param>
             <returns><see cref="T:ZXing.Common.CharacterSetECI"/> representing ECI of given value, or null if it is legal but unsupported</returns>
         </member>
         <member name="M:ZXing.Common.CharacterSetECI.getCharacterSetECIByName(System.String)">
             <param name="name">character set ECI encoding name</param>
-            <returns><see cref="T:ZXing.Common.CharacterSetECI"/> representing ECI for character encoding, or null if it is legalbut unsupported</returns>
+            <returns><see cref="T:ZXing.Common.CharacterSetECI"/> representing ECI for character encoding, or null if it is legal but unsupported</returns>
+        </member>
+        <member name="M:ZXing.Common.CharacterSetECI.getCharacterSetECI(System.Text.Encoding)">
+            <summary>
+            </summary>
+            <param name="encoding">encoding</param>
+            <returns>CharacterSetECI representing ECI for character encoding, or null if it is legal but unsupported</returns>
+        </member>
+        <member name="M:ZXing.Common.CharacterSetECI.getEncoding(ZXing.Common.CharacterSetECI)">
+            <summary>
+            returns the encoding object fo the specified charset
+            </summary>
+            <param name="charsetECI"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Common.CharacterSetECI.getEncoding(System.String)">
+            <summary>
+            returns the encoding object fo the specified name
+            </summary>
+            <param name="encodingName"></param>
+            <returns></returns>
         </member>
         <member name="T:ZXing.Common.DecoderResult">
             <summary>
@@ -2403,7 +3205,12 @@
             </summary>
             <value>The other.</value>
         </member>
-        <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.String,System.Collections.Generic.IList{System.Byte[]},System.String)">
+        <member name="P:ZXing.Common.DecoderResult.SymbologyModifier">
+            <summary>
+            gives the symbology identifier
+            </summary>
+        </member>
+        <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.String,System.Collections.Generic.List{System.Byte[]},System.String)">
             <summary>
             initializing constructor
             </summary>
@@ -2412,7 +3219,17 @@
             <param name="byteSegments"></param>
             <param name="ecLevel"></param>
         </member>
-        <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.String,System.Collections.Generic.IList{System.Byte[]},System.String,System.Int32,System.Int32)">
+        <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.String,System.Collections.Generic.IList{System.Byte[]},System.String,System.Int32)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="rawBytes"></param>
+            <param name="text"></param>
+            <param name="byteSegments"></param>
+            <param name="ecLevel"></param>
+            <param name="symbologyModifier"></param>
+        </member>
+        <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.String,System.Collections.Generic.List{System.Byte[]},System.String,System.Int32,System.Int32)">
             <summary>
             initializing constructor
             </summary>
@@ -2422,6 +3239,18 @@
             <param name="ecLevel"></param>
             <param name="saSequence"></param>
             <param name="saParity"></param>
+        </member>
+        <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.String,System.Collections.Generic.IList{System.Byte[]},System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="rawBytes"></param>
+            <param name="text"></param>
+            <param name="byteSegments"></param>
+            <param name="ecLevel"></param>
+            <param name="saSequence"></param>
+            <param name="saParity"></param>
+            <param name="symbologyModifier"></param>
         </member>
         <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.Int32,System.String,System.Collections.Generic.IList{System.Byte[]},System.String)">
             <summary>
@@ -2433,7 +3262,7 @@
             <param name="byteSegments"></param>
             <param name="ecLevel"></param>
         </member>
-        <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.Int32,System.String,System.Collections.Generic.IList{System.Byte[]},System.String,System.Int32,System.Int32)">
+        <member name="M:ZXing.Common.DecoderResult.#ctor(System.Byte[],System.Int32,System.String,System.Collections.Generic.IList{System.Byte[]},System.String,System.Int32,System.Int32,System.Int32)">
             <summary>
             initializing constructor
             </summary>
@@ -2444,6 +3273,7 @@
             <param name="ecLevel"></param>
             <param name="saSequence"></param>
             <param name="saParity"></param>
+            <param name="symbologyModifier"></param>
         </member>
         <member name="T:ZXing.Common.DecodingOptions">
             <summary>
@@ -2466,6 +3296,16 @@
             </summary>
             <value>
               <c>true</c> if [try harder]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:ZXing.Common.DecodingOptions.TryInverted">
+            <summary>
+            Gets or sets a value indicating whether the image should be automatically inverted
+            if no result is found in the original image.
+            ATTENTION: Please be carefully because it slows down the decoding process if it is used
+            </summary>
+            <value>
+              <c>true</c> if image should be inverted; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:ZXing.Common.DecodingOptions.PureBarcode">
@@ -3166,6 +4006,46 @@
             </summary>
             <author>Sean Owen</author>
         </member>
+        <member name="F:ZXing.Common.ReedSolomon.GenericGF.AZTEC_DATA_12">
+            <summary>
+            Aztec data 12
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.ReedSolomon.GenericGF.AZTEC_DATA_10">
+            <summary>
+            Aztec data 10
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.ReedSolomon.GenericGF.AZTEC_DATA_6">
+            <summary>
+            Aztec data 6
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.ReedSolomon.GenericGF.AZTEC_PARAM">
+            <summary>
+            Aztec param
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.ReedSolomon.GenericGF.QR_CODE_FIELD_256">
+            <summary>
+            QR Code
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.ReedSolomon.GenericGF.DATA_MATRIX_FIELD_256">
+            <summary>
+            Data Matrix
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.ReedSolomon.GenericGF.AZTEC_DATA_8">
+            <summary>
+            Aztec data 8
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.ReedSolomon.GenericGF.MAXICODE_FIELD_64">
+            <summary>
+            Maxicode
+            </summary>
+        </member>
         <member name="M:ZXing.Common.ReedSolomon.GenericGF.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
             Create a representation of GF(size) using the given primitive polynomial.
@@ -3306,6 +4186,12 @@
             <author>William Rucklidge</author>
             <author>sanfordsquires</author>
         </member>
+        <member name="M:ZXing.Common.ReedSolomon.ReedSolomonDecoder.#ctor(ZXing.Common.ReedSolomon.GenericGF)">
+            <summary>
+            constructor
+            </summary>
+            <param name="field"></param>
+        </member>
         <member name="M:ZXing.Common.ReedSolomon.ReedSolomonDecoder.decode(System.Int32[],System.Int32)">
             <summary>
               <p>Decodes given set of received codewords, which include both data and error-correction
@@ -3323,12 +4209,55 @@
             <author>Sean Owen</author>
             <author>William Rucklidge</author>
         </member>
+        <member name="M:ZXing.Common.ReedSolomon.ReedSolomonEncoder.#ctor(ZXing.Common.ReedSolomon.GenericGF)">
+            <summary>
+            constructor
+            </summary>
+            <param name="field"></param>
+        </member>
+        <member name="M:ZXing.Common.ReedSolomon.ReedSolomonEncoder.encode(System.Int32[],System.Int32)">
+            <summary>
+            encodes
+            </summary>
+            <param name="toEncode"></param>
+            <param name="ecBytes"></param>
+        </member>
         <member name="T:ZXing.Common.StringUtils">
             <summary>
             Common string-related functions.
             </summary>
             <author>Sean Owen</author>
             <author>Alex Dupre</author>
+        </member>
+        <member name="F:ZXing.Common.StringUtils.PLATFORM_DEFAULT_ENCODING">
+            <summary>
+            default encoding of the current platform (name)
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.StringUtils.PLATFORM_DEFAULT_ENCODING_T">
+            <summary>
+            default encoding of the current platform (type)
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.StringUtils.SHIFT_JIS_ENCODING">
+            <summary>
+            Shift JIS encoding if available
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.StringUtils.GB2312_ENCODING">
+            <summary>
+            GB 2312 encoding if available
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.StringUtils.EUC_JP_ENCODING">
+            <summary>
+            ECU JP encoding if available
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.StringUtils.ISO88591_ENCODING">
+            <summary>
+            ISO8859-1 encoding if available
+            </summary>
         </member>
         <member name="F:ZXing.Common.StringUtils.SHIFT_JIS">
             <summary>
@@ -3340,15 +4269,40 @@
             GB2312
             </summary>
         </member>
+        <member name="F:ZXing.Common.StringUtils.EUC_JP">
+            <summary>
+            EUC-JP
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.StringUtils.UTF8">
+            <summary>
+            UTF-8
+            </summary>
+        </member>
+        <member name="F:ZXing.Common.StringUtils.ISO88591">
+            <summary>
+            ISO-8859-1
+            </summary>
+        </member>
         <member name="M:ZXing.Common.StringUtils.guessEncoding(System.Byte[],System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
             <summary>
             Guesses the encoding.
             </summary>
             <param name="bytes">bytes encoding a string, whose encoding should be guessed</param>
             <param name="hints">decode hints if applicable</param>
-            <returns>name of guessed encoding; at the moment will only guess one of:
-            {@link #SHIFT_JIS}, {@link #UTF8}, {@link #ISO88591}, or the platform
-            default encoding if none of these can possibly be correct</returns>
+            <return> name of guessed encoding; at the moment will only guess one of:
+            "SJIS", "UTF8", "ISO8859_1", or the platform default encoding if none
+            of these can possibly be correct</return>
+        </member>
+        <member name="M:ZXing.Common.StringUtils.guessCharset(System.Byte[],System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
+            <summary></summary>
+            <param name="bytes">bytes encoding a string, whose encoding should be guessed</param>
+            <param name="hints">decode hints if applicable</param>
+            <returns>Charset of guessed encoding; at the moment will only guess one of:
+             {@link #SHIFT_JIS_CHARSET}, {@link StandardCharsets#UTF_8},
+             {@link StandardCharsets#ISO_8859_1}, {@link StandardCharsets#UTF_16},
+             or the platform default encoding if
+             none of these can possibly be correct</returns>
         </member>
         <member name="T:ZXing.Datamatrix.DataMatrixReader">
              <summary>
@@ -3589,17 +4543,17 @@
             The Text Basic Character Set (*'s used for placeholders for the shift values)
             </summary>
         </member>
-        <member name="M:ZXing.Datamatrix.Internal.DecodedBitStreamParser.decodeAsciiSegment(ZXing.Common.BitSource,System.Text.StringBuilder,System.Text.StringBuilder,ZXing.Datamatrix.Internal.DecodedBitStreamParser.Mode@)">
+        <member name="M:ZXing.Datamatrix.Internal.DecodedBitStreamParser.decodeAsciiSegment(ZXing.Common.BitSource,System.Text.StringBuilder,System.Text.StringBuilder,System.Collections.Generic.List{System.Int32},ZXing.Datamatrix.Internal.DecodedBitStreamParser.Mode@)">
             <summary>
             See ISO 16022:2006, 5.2.3 and Annex C, Table C.2
             </summary>
         </member>
-        <member name="M:ZXing.Datamatrix.Internal.DecodedBitStreamParser.decodeC40Segment(ZXing.Common.BitSource,System.Text.StringBuilder)">
+        <member name="M:ZXing.Datamatrix.Internal.DecodedBitStreamParser.decodeC40Segment(ZXing.Common.BitSource,System.Text.StringBuilder,System.Collections.Generic.List{System.Int32})">
             <summary>
             See ISO 16022:2006, 5.2.5 and Annex C, Table C.1
             </summary>
         </member>
-        <member name="M:ZXing.Datamatrix.Internal.DecodedBitStreamParser.decodeTextSegment(ZXing.Common.BitSource,System.Text.StringBuilder)">
+        <member name="M:ZXing.Datamatrix.Internal.DecodedBitStreamParser.decodeTextSegment(ZXing.Common.BitSource,System.Text.StringBuilder,System.Collections.Generic.List{System.Int32})">
             <summary>
             See ISO 16022:2006, 5.2.6 and Annex C, Table C.2
             </summary>
@@ -3819,6 +4773,34 @@
             <param name="numcols">the number of columns</param>
             <param name="numrows">the number of rows</param>
         </member>
+        <member name="P:ZXing.Datamatrix.Encoder.DefaultPlacement.Numrows">
+            <summary>
+            num rows
+            </summary>
+        </member>
+        <member name="P:ZXing.Datamatrix.Encoder.DefaultPlacement.Numcols">
+            <summary>
+            num cols
+            </summary>
+        </member>
+        <member name="P:ZXing.Datamatrix.Encoder.DefaultPlacement.Bits">
+            <summary>
+            bits
+            </summary>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.DefaultPlacement.getBit(System.Int32,System.Int32)">
+            <summary>
+            get a specific bit
+            </summary>
+            <param name="col"></param>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.DefaultPlacement.place">
+            <summary>
+            place
+            </summary>
+        </member>
         <member name="M:ZXing.Datamatrix.Encoder.DefaultPlacement.utah(System.Int32,System.Int32,System.Int32)">
             <summary>
             Places the 8 bits of a utah-shaped symbol character in ECC200.
@@ -3837,6 +4819,36 @@
         <member name="T:ZXing.Datamatrix.Encoder.Encodation">
             <summary>
             Enumeration for encodation types
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.Encodation.ASCII">
+            <summary>
+            ASCII
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.Encodation.C40">
+            <summary>
+            C40
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.Encodation.TEXT">
+            <summary>
+            TEXT
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.Encodation.X12">
+            <summary>
+            X12
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.Encodation.EDIFACT">
+            <summary>
+            EDIFACT
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.Encodation.BASE256">
+            <summary>
+            BASE256
             </summary>
         </member>
         <member name="T:ZXing.Datamatrix.Encoder.ErrorCorrection">
@@ -3992,15 +5004,142 @@
             Symbol info table for DataMatrix.
             </summary>
         </member>
+        <member name="F:ZXing.Datamatrix.Encoder.SymbolInfo.matrixWidth">
+            <summary>
+            matrix width
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.SymbolInfo.matrixHeight">
+            <summary>
+            matrix height
+            </summary>
+        </member>
         <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.overrideSymbolSet(ZXing.Datamatrix.Encoder.SymbolInfo[])">
              Overrides the symbol info set used by this class. Used for testing purposes.
             
              @param override the symbol info set to use
         </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.#ctor(System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="rectangular"></param>
+            <param name="dataCapacity"></param>
+            <param name="errorCodewords"></param>
+            <param name="matrixWidth"></param>
+            <param name="matrixHeight"></param>
+            <param name="dataRegions"></param>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.lookup(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="dataCodewords"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.lookup(System.Int32,ZXing.Datamatrix.Encoder.SymbolShapeHint)">
+            <summary>
+            
+            </summary>
+            <param name="dataCodewords"></param>
+            <param name="shape"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.lookup(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="dataCodewords"></param>
+            <param name="allowRectangular"></param>
+            <param name="fail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.lookup(System.Int32,ZXing.Datamatrix.Encoder.SymbolShapeHint,ZXing.Dimension,ZXing.Dimension,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="dataCodewords"></param>
+            <param name="shape"></param>
+            <param name="minSize"></param>
+            <param name="maxSize"></param>
+            <param name="fail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.getSymbolDataWidth">
+            <summary>
+            symbol data width
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.getSymbolDataHeight">
+            <summary>
+            symbol data height
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.getSymbolWidth">
+            <summary>
+            symbol width
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.getSymbolHeight">
+            <summary>
+            symbol height
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.getCodewordCount">
+            <summary>
+            codeword count
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.getInterleavedBlockCount">
+            <summary>
+            interleaved block count
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.getDataLengthForInterleavedBlock(System.Int32)">
+            <summary>
+            data length for interleaved block
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.getErrorLengthForInterleavedBlock(System.Int32)">
+            <summary>
+            error length for interleaved block
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Datamatrix.Encoder.SymbolInfo.ToString">
+            <summary>
+            user friendly representation
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.Datamatrix.Encoder.SymbolShapeHint">
             <summary>
             Enumeration for DataMatrix symbol shape hint. It can be used to force square or rectangular
             symbols.   
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.SymbolShapeHint.FORCE_NONE">
+            <summary>
+            doesn't force anything
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.SymbolShapeHint.FORCE_SQUARE">
+            <summary>
+            forces square image
+            </summary>
+        </member>
+        <member name="F:ZXing.Datamatrix.Encoder.SymbolShapeHint.FORCE_RECTANGLE">
+            <summary>
+            forces rectangle image
             </summary>
         </member>
         <member name="T:ZXing.Datamatrix.DatamatrixEncodingOptions">
@@ -4133,6 +5272,12 @@
             at all.
             </summary>
         </member>
+        <member name="F:ZXing.DecodeHintType.ALSO_INVERTED">
+            <summary>
+            If true, also tries to decode as inverted image. All configured decoders are simply called a
+            second time with an inverted image. Doesn't matter what it maps to; use {@link Boolean#TRUE}.
+            </summary>
+        </member>
         <member name="T:ZXing.Dimension">
             <summary>
             Simply encapsulates a width and height.
@@ -4255,6 +5400,12 @@
             type: <see cref="T:ZXing.PDF417.Internal.Dimensions" />
             </summary>
         </member>
+        <member name="F:ZXing.EncodeHintType.PDF417_MACRO_META_DATA">
+            <summary>
+            The Specifies that the PDF417 will contain macro metadata.
+            type: <see cref="T:ZXing.PDF417.PDF417MacroMetadata"/>
+            </summary>
+        </member>
         <member name="F:ZXing.EncodeHintType.DISABLE_ECI">
             <summary>
             Don't append ECI segment.
@@ -4321,6 +5472,21 @@
             0..QRCode.NUM_MASK_PATTERNS-1. By default the code will automatically select
             the optimal mask pattern.
             (Type <see cref="T:System.Int32" />, or <see cref="T:System.String" /> representation of the integer value).
+            </summary>
+        </member>
+        <member name="F:ZXing.EncodeHintType.FORCE_CODE_SET">
+            <summary>
+            Forces which encoding will be used. Currently only used for Code-128 code sets (Type <see cref="T:System.String" />). Valid values are "A", "B", "C".
+            see also CODE128_FORCE_CODESET_B
+            </summary>
+        </member>
+        <member name="F:ZXing.EncodeHintType.QR_COMPACT">
+            <summary>
+            Specifies whether to use compact mode for QR code (type <see cref="T:System.Boolean" />, or "true" or "false"
+            Please note that when compaction is performed, the most compact character encoding is chosen
+            for characters in the input that are not in the ISO-8859-1 character set. Based on experience,
+            some scanners do not support encodings like cp-1256 (Arabic). In such cases the encoding can
+            be forced to UTF-8 by means of the <see cref="F:ZXing.EncodeHintType.CHARACTER_SET"/> encoding hint.
             </summary>
         </member>
         <member name="T:ZXing.FormatException">
@@ -4644,6 +5810,31 @@
             <author>Rishabh Hatgadkar</author>
             </summary>
         </member>
+        <member name="M:ZXing.IMB.IMBReader.doDecode(ZXing.BinaryBitmap,System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
+            <summary>
+            decode the image
+            </summary>
+            <param name="image"></param>
+            <param name="hints"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.IMB.IMBReader.reset">
+            <summary>
+            resets internal state
+            </summary>
+        </member>
+        <member name="M:ZXing.IMB.IMBReader.decodeRow(System.Int32,ZXing.Common.BitArray,System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
+            <summary>
+              <p>Attempts to decode a one-dimensional barcode format given a single row of
+            an image.</p>
+            </summary>
+            <param name="rowNumber">row number from top of the row</param>
+            <param name="row">the black/white pixel data of the row</param>
+            <param name="hints">decode hints</param>
+            <returns>
+              <see cref="T:ZXing.Result"/>containing encoded string and start/end of barcode or null, if an error occurs or barcode cannot be found
+            </returns>
+        </member>
         <member name="T:ZXing.InvertedLuminanceSource">
             <summary>
             A wrapper implementation of {@link LuminanceSource} which inverts the luminances it returns -- black becomes
@@ -4853,6 +6044,26 @@
              <author>Manuel Kasten</author>
              </summary>
         </member>
+        <member name="M:ZXing.Maxicode.Internal.Decoder.#ctor">
+            <summary>
+            constructor
+            </summary>
+        </member>
+        <member name="M:ZXing.Maxicode.Internal.Decoder.decode(ZXing.Common.BitMatrix)">
+            <summary>
+            decode the bits
+            </summary>
+            <param name="bits"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.Maxicode.Internal.Decoder.decode(ZXing.Common.BitMatrix,System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
+            <summary>
+            decode the bits
+            </summary>
+            <param name="bits"></param>
+            <param name="hints"></param>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.Maxicode.MaxiCodeReader">
             <summary>
             This implementation can detect and decode a MaxiCode in an image.
@@ -4879,6 +6090,11 @@
             <returns>
             String which the barcode encodes
             </returns>
+        </member>
+        <member name="M:ZXing.Maxicode.MaxiCodeReader.reset">
+            <summary>
+            does nothing here
+            </summary>
         </member>
         <member name="M:ZXing.Maxicode.MaxiCodeReader.extractPureBits(ZXing.Common.BitMatrix)">
              <summary>
@@ -5176,6 +6392,7 @@
              <p>Creates a finder that will search the image for three finder patterns.</p>
             
              <param name="image">image to search</param>
+             <param name="resultPointCallback">callback for result points</param>
              </summary>
         </member>
         <member name="M:ZXing.Multi.QrCode.Internal.MultiFinderPatternFinder.selectMultipleBestPatterns">
@@ -5185,6 +6402,13 @@
                     those that have been detected at least CENTER_QUORUM times, and whose module
                     size differs from the average among those patterns the least
             </returns>
+        </member>
+        <member name="M:ZXing.Multi.QrCode.Internal.MultiFinderPatternFinder.findMulti(System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
+            <summary>
+            try to find patterns
+            </summary>
+            <param name="hints"></param>
+            <returns></returns>
         </member>
         <member name="T:ZXing.Multi.QrCode.QRCodeMultiReader">
             <summary>
@@ -5217,6 +6441,23 @@
             These represent the encodings of characters, as patterns of wide and narrow bars. The 7 least-significant bits of
             each int correspond to the pattern of wide and narrow, with 1s representing "wide" and 0s representing narrow.
         </member>
+        <member name="M:ZXing.OneD.CodaBarReader.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ZXing.OneD.CodaBarReader.decodeRow(System.Int32,ZXing.Common.BitArray,System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
+            <summary>
+              <p>Attempts to decode a one-dimensional barcode format given a single row of
+            an image.</p>
+            </summary>
+            <param name="rowNumber">row number from top of the row</param>
+            <param name="row">the black/white pixel data of the row</param>
+            <param name="hints">decode hints</param>
+            <returns>
+              <see cref="T:ZXing.Result"/>containing encoded string and start/end of barcode or null, if an error occurs or barcode cannot be found
+            </returns>
+        </member>
         <member name="M:ZXing.OneD.CodaBarReader.setCounters(ZXing.Common.BitArray)">
             <summary>
             Records the size of all runs of white and black pixels, starting with white.
@@ -5231,14 +6472,56 @@
             </summary>
             <author>dsbnatut@gmail.com (Kazuki Nishiura)</author>
         </member>
+        <member name="P:ZXing.OneD.CodaBarWriter.SupportedWriteFormats">
+            <summary>
+            returns supported formats
+            </summary>
+        </member>
+        <member name="M:ZXing.OneD.CodaBarWriter.encode(System.String)">
+            <summary>
+            encodes the content
+            </summary>
+            <param name="contents"></param>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.OneD.Code128EncodingOptions">
             <summary>
-            The class holds the available options for the QrCodeWriter
+            The class holds the available options for the Code128 1D Writer
             </summary>
         </member>
         <member name="P:ZXing.OneD.Code128EncodingOptions.ForceCodesetB">
             <summary>
             if true, don't switch to codeset C for numbers
+            </summary>
+        </member>
+        <member name="P:ZXing.OneD.Code128EncodingOptions.ForceCodeset">
+            <summary>
+            Forces which encoding will be used. Currently only used for Code-128 code sets (Type <see cref="T:System.String" />). Valid values are "A", "B", "C".
+            </summary>
+        </member>
+        <member name="T:ZXing.OneD.Code128EncodingOptions.Codesets">
+            <summary>
+            avaiable codesets
+            </summary>
+        </member>
+        <member name="F:ZXing.OneD.Code128EncodingOptions.Codesets.None">
+            <summary>
+            none specified
+            </summary>
+        </member>
+        <member name="F:ZXing.OneD.Code128EncodingOptions.Codesets.A">
+            <summary>
+            Codeset A
+            </summary>
+        </member>
+        <member name="F:ZXing.OneD.Code128EncodingOptions.Codesets.B">
+            <summary>
+            Codeset B
+            </summary>
+        </member>
+        <member name="F:ZXing.OneD.Code128EncodingOptions.Codesets.C">
+            <summary>
+            Codeset C
             </summary>
         </member>
         <member name="T:ZXing.OneD.Code128Reader">
@@ -5248,12 +6531,42 @@
              <author>Sean Owen</author>
              </summary>
         </member>
+        <member name="M:ZXing.OneD.Code128Reader.decodeRow(System.Int32,ZXing.Common.BitArray,System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
+            <summary>
+              <p>Attempts to decode a one-dimensional barcode format given a single row of
+            an image.</p>
+            </summary>
+            <param name="rowNumber">row number from top of the row</param>
+            <param name="row">the black/white pixel data of the row</param>
+            <param name="hints">decode hints</param>
+            <returns>
+              <see cref="T:ZXing.Result"/>containing encoded string and start/end of barcode or null, if an error occurs or barcode cannot be found
+            </returns>
+        </member>
         <member name="T:ZXing.OneD.Code128Writer">
             <summary>
             This object renders a CODE128 code as a <see cref="T:ZXing.Common.BitMatrix" />.
             
             <author>erik.barbara@gmail.com (Erik Barbara)</author>
             </summary>
+        </member>
+        <member name="P:ZXing.OneD.Code128Writer.SupportedWriteFormats">
+            <summary>
+            returns supported formats
+            </summary>
+        </member>
+        <member name="M:ZXing.OneD.Code128Writer.encode(System.String)">
+            <summary>
+            Encode the contents following specified format.
+            </summary>
+        </member>
+        <member name="M:ZXing.OneD.Code128Writer.encode(System.String,System.Collections.Generic.IDictionary{ZXing.EncodeHintType,System.Object})">
+            <summary>
+            starts encoding
+            </summary>
+            <param name="contents"></param>
+            <param name="hints"></param>
+            <returns></returns>
         </member>
         <member name="T:ZXing.OneD.Code39Reader">
             <summary>
@@ -5314,6 +6627,11 @@
             <author>erik.barbara@gmail.com (Erik Barbara)</author>
             </summary>
         </member>
+        <member name="P:ZXing.OneD.Code39Writer.SupportedWriteFormats">
+            <summary>
+            returns supported formats
+            </summary>
+        </member>
         <member name="M:ZXing.OneD.Code39Writer.encode(System.String)">
             <summary>
             Encode the contents to byte array expression of one-dimensional barcode.
@@ -5354,6 +6672,11 @@
         <member name="T:ZXing.OneD.Code93Writer">
             <summary>
             This object renders a CODE93 code as a BitMatrix
+            </summary>
+        </member>
+        <member name="P:ZXing.OneD.Code93Writer.SupportedWriteFormats">
+            <summary>
+            returns supported formats
             </summary>
         </member>
         <member name="M:ZXing.OneD.Code93Writer.encode(System.String)">
@@ -5420,6 +6743,11 @@
             <author>aripollak@gmail.com (Ari Pollak)</author>
             </summary>
         </member>
+        <member name="P:ZXing.OneD.EAN13Writer.SupportedWriteFormats">
+            <summary>
+            returns supported formats
+            </summary>
+        </member>
         <member name="M:ZXing.OneD.EAN13Writer.encode(System.String)">
             <summary>
             Encode the contents to byte array expression of one-dimensional barcode.
@@ -5459,6 +6787,11 @@
             <summary>
             This object renders an EAN8 code as a <see cref="T:ZXing.Common.BitMatrix"/>.
             <author>aripollak@gmail.com (Ari Pollak)</author>
+            </summary>
+        </member>
+        <member name="P:ZXing.OneD.EAN8Writer.SupportedWriteFormats">
+            <summary>
+            returns supported formats
             </summary>
         </member>
         <member name="M:ZXing.OneD.EAN8Writer.encode(System.String)">
@@ -5602,6 +6935,11 @@
             <author>erik.barbara@gmail.com (Erik Barbara)</author>
             </summary>
         </member>
+        <member name="P:ZXing.OneD.ITFWriter.SupportedWriteFormats">
+            <summary>
+            returns supported formats
+            </summary>
+        </member>
         <member name="M:ZXing.OneD.ITFWriter.encode(System.String)">
             <summary>
             Encode the contents to bool array expression of one-dimensional barcode.
@@ -5651,6 +6989,11 @@
             This object renders a MSI code as a <see cref="T:ZXing.Common.BitMatrix"/>.
             </summary>
         </member>
+        <member name="P:ZXing.OneD.MSIWriter.SupportedWriteFormats">
+            <summary>
+            returns supported formats
+            </summary>
+        </member>
         <member name="M:ZXing.OneD.MSIWriter.encode(System.String)">
             <summary>
             Encode the contents to byte array expression of one-dimensional barcode.
@@ -5666,9 +7009,33 @@
             * @author Ruslan Karachun
             </summary>
         </member>
+        <member name="M:ZXing.OneD.PharmaCodeReader.mean(System.Double[])">
+            <summary>
+            
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.OneD.PharmaCodeReader.decodeRow(System.Int32,ZXing.Common.BitArray,System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object})">
+            <summary>
+              <p>Attempts to decode a one-dimensional barcode format given a single row of
+            an image.</p>
+            </summary>
+            <param name="rowNumber">row number from top of the row</param>
+            <param name="row">the black/white pixel data of the row</param>
+            <param name="hints">decode hints</param>
+            <returns>
+              <see cref="T:ZXing.Result"/>containing encoded string and start/end of barcode or null, if an error occurs or barcode cannot be found
+            </returns>
+        </member>
         <member name="T:ZXing.OneD.PlesseyWriter">
             <summary>
             This object renders a Plessey code as a <see cref="T:ZXing.Common.BitMatrix"/>.
+            </summary>
+        </member>
+        <member name="P:ZXing.OneD.PlesseyWriter.SupportedWriteFormats">
+            <summary>
+            returns the list of supported formats
             </summary>
         </member>
         <member name="M:ZXing.OneD.PlesseyWriter.encode(System.String)">
@@ -5748,6 +7115,27 @@
               <author>dsbnatut@gmail.com (Kazuki Nishiura)</author>
             </summary>
         </member>
+        <member name="P:ZXing.OneD.OneDimensionalCodeWriter.SupportedWriteFormats">
+            <summary>
+            returns supported formats
+            </summary>
+        </member>
+        <member name="M:ZXing.OneD.OneDimensionalCodeWriter.encode(System.String)">
+            <summary>
+            Encode the contents to boolean array expression of one-dimensional barcode.
+            Start code and end code should be included in result, and side margins should not be included.
+            </summary>
+            <param name="contents">barcode contents to encode</param>
+            <returns>a <c>bool[]</c> of horizontal pixels (false = white, true = black)</returns>
+        </member>
+        <member name="M:ZXing.OneD.OneDimensionalCodeWriter.encode(System.String,System.Collections.Generic.IDictionary{ZXing.EncodeHintType,System.Object})">
+            <summary>
+            Can be overwritten if the encode requires to read the hints map. Otherwise it defaults to {@code encode}.
+            </summary>
+            <param name="contents">barcode contents to encode</param>
+            <param name="hints">encoding hints</param>
+            <returns>a <c>bool[]</c> of horizontal pixels (false = white, true = black)</returns>
+        </member>
         <member name="M:ZXing.OneD.OneDimensionalCodeWriter.encode(System.String,ZXing.BarcodeFormat,System.Int32,System.Int32)">
             <summary>
             Encode a barcode using the default settings.
@@ -5795,14 +7183,6 @@
             <summary>
             Gets the default margin.
             </summary>
-        </member>
-        <member name="M:ZXing.OneD.OneDimensionalCodeWriter.encode(System.String)">
-            <summary>
-            Encode the contents to bool array expression of one-dimensional barcode.
-            Start code and end code should be included in result, and side margins should not be included.
-            </summary>
-            <param name="contents">barcode contents to encode</param>
-            <returns>a <c>bool[]</c> of horizontal pixels (false = white, true = black)</returns>
         </member>
         <member name="M:ZXing.OneD.OneDimensionalCodeWriter.CalculateChecksumDigitModulo10(System.String)">
             <summary>
@@ -5896,6 +7276,7 @@
             <param name="row">row to count from</param>
             <param name="start">offset into row to start at</param>
             <param name="counters">array into which to record counts</param>
+            <param name="numCounters"></param>
         </member>
         <member name="M:ZXing.OneD.OneDReader.recordPatternInReverse(ZXing.Common.BitArray,System.Int32,System.Int32[])">
             <summary>
@@ -6538,7 +7919,8 @@
             <param name="patterns">the set of patterns to use to decode -- sometimes different encodings</param>
             for the digits 0-9 are used, and this indicates the encodings for 0 to 9 that should
             be used
-            <returns>horizontal offset of first pixel beyond the decoded digit</returns>
+            <param name="digit">horizontal offset of first pixel beyond the decoded digit</param>
+            <returns></returns>
         </member>
         <member name="P:ZXing.OneD.UPCEANReader.BarcodeFormat">
             <summary>
@@ -6647,11 +8029,57 @@
             @author 0979097955s@gmail.com (RX)
             </summary>
         </member>
+        <member name="P:ZXing.OneD.UPCEWriter.SupportedWriteFormats">
+            <summary>
+            returns supported formats
+            </summary>
+        </member>
+        <member name="M:ZXing.OneD.UPCEWriter.encode(System.String)">
+            <summary>
+            content encoding method
+            </summary>
+            <param name="contents"></param>
+            <returns></returns>
+        </member>
         <member name="T:ZXing.PDF417.Internal.BarcodeMetadata">
             <summary>
             Metadata about a PDF417 Barcode
             </summary>
             <author>Guenther Grau</author>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BarcodeMetadata.ColumnCount">
+            <summary>
+            column count
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BarcodeMetadata.ErrorCorrectionLevel">
+            <summary>
+            error correction level
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BarcodeMetadata.RowCountUpper">
+            <summary>
+            row count upper
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BarcodeMetadata.RowCountLower">
+            <summary>
+            row count lower
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BarcodeMetadata.RowCount">
+            <summary>
+            row count
+            </summary>
+        </member>
+        <member name="M:ZXing.PDF417.Internal.BarcodeMetadata.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="columnCount"></param>
+            <param name="rowCountUpperPart"></param>
+            <param name="rowCountLowerPart"></param>
+            <param name="errorCorrectionLevel"></param>
         </member>
         <member name="T:ZXing.PDF417.Internal.BarcodeValue">
             <summary>
@@ -6688,6 +8116,46 @@
             A Bounding Box helper class
             </summary>
             <author>Guenther Grau</author>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BoundingBox.TopLeft">
+            <summary>
+            top left corner of the box
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BoundingBox.TopRight">
+            <summary>
+            top right corner of the box
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BoundingBox.BottomLeft">
+            <summary>
+            bottom left corner of the box
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BoundingBox.BottomRight">
+            <summary>
+            bottom right corner of the box
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BoundingBox.MinX">
+            <summary>
+            min x
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BoundingBox.MaxX">
+            <summary>
+            max x
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BoundingBox.MinY">
+            <summary>
+            min y
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.BoundingBox.MaxY">
+            <summary>
+            max y
+            </summary>
         </member>
         <member name="M:ZXing.PDF417.Internal.BoundingBox.Create(ZXing.Common.BitMatrix,ZXing.ResultPoint,ZXing.ResultPoint,ZXing.ResultPoint,ZXing.ResultPoint)">
             <summary>
@@ -6745,6 +8213,31 @@
         <member name="F:ZXing.PDF417.Internal.Codeword.BARCODE_ROW_UNKNOWN">
             <summary>
             Default value for the RowNumber (-1 being an invalid real number)
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.Codeword.StartX">
+            <summary>
+            start of x coordinates
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.Codeword.EndX">
+            <summary>
+            end of x coordinates
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.Codeword.Bucket">
+            <summary>
+            bucket
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.Codeword.Value">
+            <summary>
+            value
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.Codeword.RowNumber">
+            <summary>
+            row number
             </summary>
         </member>
         <member name="M:ZXing.PDF417.Internal.Codeword.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
@@ -6900,6 +8393,43 @@
             
             </summary>
             <author>Guenther Grau</author>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.DetectionResult.Metadata">
+            <summary>
+            metadata which are found
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.DetectionResult.DetectionResultColumns">
+            <summary>
+            result columns
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.DetectionResult.Box">
+            <summary>
+            bounding box of the detected result
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.DetectionResult.ColumnCount">
+            <summary>
+            column count
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.DetectionResult.RowCount">
+            <summary>
+            row count
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.DetectionResult.ErrorCorrectionLevel">
+            <summary>
+            error correction level
+            </summary>
+        </member>
+        <member name="M:ZXing.PDF417.Internal.DetectionResult.#ctor(ZXing.PDF417.Internal.BarcodeMetadata,ZXing.PDF417.Internal.BoundingBox)">
+            <summary>
+            initializing constructor
+            </summary>
+            <param name="metadata"></param>
+            <param name="box"></param>
         </member>
         <member name="M:ZXing.PDF417.Internal.DetectionResult.getDetectionResultColumns">
             <summary>
@@ -7553,7 +9083,7 @@
         </member>
         <member name="M:ZXing.PDF417.Internal.Detector.detect(ZXing.BinaryBitmap,System.Collections.Generic.IDictionary{ZXing.DecodeHintType,System.Object},System.Boolean)">
             <summary>
-              <p>Detects a PDF417 Code in an image. Only checks 0 and 180 degree rotations.</p>
+              <p>Detects a PDF417 Code in an image. Checks 0, 90, 180, and 270 degree rotations.</p>
             </summary>
             <param name="image">barcode image to decode</param>
             <param name="hints">optional hints to detector</param>
@@ -7608,7 +9138,7 @@
             <param name="startColumn">Start column.</param>
             <param name="pattern">Pattern.</param>
         </member>
-        <member name="M:ZXing.PDF417.Internal.Detector.findGuardPattern(ZXing.Common.BitMatrix,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32[],System.Int32[])">
+        <member name="M:ZXing.PDF417.Internal.Detector.findGuardPattern(ZXing.Common.BitMatrix,System.Int32,System.Int32,System.Int32,System.Int32[],System.Int32[])">
             <summary>
             Finds the guard pattern.  Uses System.Linq.Enumerable.Repeat to fill in counters.  This might be a performance issue?
             </summary>
@@ -7617,11 +9147,10 @@
             <param name="column">column x position to start search.</param>
             <param name="row">row y position to start search.</param>
             <param name="width">width the number of pixels to search on this row.</param>
-            <param name="whiteFirst">If set to <c>true</c> search the white patterns first.</param>
             <param name="pattern">pattern of counts of number of black and white pixels that are being searched for as a pattern.</param>
             <param name="counters">counters array of counters, as long as pattern, to re-use .</param>
         </member>
-        <member name="M:ZXing.PDF417.Internal.Detector.patternMatchVariance(System.Int32[],System.Int32[],System.Int32)">
+        <member name="M:ZXing.PDF417.Internal.Detector.patternMatchVariance(System.Int32[],System.Int32[])">
             <summary>
             Determines how closely a set of observed counts of runs of black/white.
             values matches a given target pattern. This is reported as the ratio of
@@ -7637,12 +9166,21 @@
             </returns>
             <param name="counters">observed counters.</param>
             <param name="pattern">expected pattern.</param>
-            <param name="maxIndividualVariance">The most any counter can differ before we give up.</param>
         </member>
         <member name="T:ZXing.PDF417.Internal.PDF417DetectorResult">
             <summary>
             PDF 417 Detector Result class.  Skipped private backing stores.
             <author>Guenther Grau</author> 
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.PDF417DetectorResult.Bits">
+            <summary>
+            bit matrix of the detected result
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.Internal.PDF417DetectorResult.Points">
+            <summary>
+            points of the detected result in the image
             </summary>
         </member>
         <member name="M:ZXing.PDF417.Internal.PDF417DetectorResult.#ctor(ZXing.Common.BitMatrix,System.Collections.Generic.List{ZXing.ResultPoint[]})">
@@ -7654,7 +9192,32 @@
         </member>
         <member name="T:ZXing.PDF417.Internal.PDF417AspectRatio">
             <summary>
-            defines the level of the error correction / count of error correction codewords
+            defines the aspect ratio of the image
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417AspectRatio.A1">
+            <summary>
+            ratio 1
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417AspectRatio.A2">
+            <summary>
+            ratio 2
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417AspectRatio.A3">
+            <summary>
+            ratio 3
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417AspectRatio.A4">
+            <summary>
+            ratio 4
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417AspectRatio.AUTO">
+            <summary>
+            automatic selection
             </summary>
         </member>
         <member name="T:ZXing.PDF417.Internal.BarcodeMatrix">
@@ -7668,6 +9231,7 @@
             <summary>
             <param name="height">the height of the matrix (Rows)</param>
             <param name="width">the width of the matrix (Cols)</param>
+            <param name="compact">defines if a compact PDF417 should be encoded</param>
             </summary>
         </member>
         <member name="T:ZXing.PDF417.Internal.BarcodeRow">
@@ -7686,7 +9250,7 @@
              Sets a specific location in the bar
             
              <param name="x">The location in the bar</param>
-             <param name="value">Black if true, white if false;</param>
+             <return>Black if true, white if false;</return>
              </summary>
         </member>
         <member name="M:ZXing.PDF417.Internal.BarcodeRow.set(System.Int32,System.Boolean)">
@@ -7786,6 +9350,16 @@
             The stop pattern (18 bits)
             </summary>
         </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417.MACRO_LAST_SEGMENT">
+            <summary>
+            The macro last segment
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417.MACRO_SEGMENT_ID">
+            <summary>
+            The macro segment identifier
+            </summary>
+        </member>
         <member name="F:ZXing.PDF417.Internal.PDF417.CODEWORD_TABLE">
             <summary>
             The codeword table from the Annex A of ISO/IEC 15438:2001(E).
@@ -7820,6 +9394,31 @@
             </summary>
             <param name="msg">the message to encode</param>
             <param name="errorCorrectionLevel">PDF417 error correction level to use</param>
+            <param name="longDimension"></param>
+            <param name="shortDimension"></param>
+            <param name="aspectRatio"></param>
+        </member>
+        <member name="M:ZXing.PDF417.Internal.PDF417.getMacroBlock(System.Int32@)">
+            <summary>
+            Gets the macro block.
+            </summary>
+            <returns>System.String.</returns>
+            <exception cref="T:ZXing.WriterException">
+            The macro segment index must be greater than or equal to 0.
+            or
+            The macro segment index must be less than the segment count.
+            or
+            The macro segment count must be greater than 0.
+            </exception>
+        </member>
+        <member name="M:ZXing.PDF417.Internal.PDF417.appendMacroOptionalField(ZXing.PDF417.Internal.PDF417OptionalMacroFields,System.String,System.Int32@,System.Text.StringBuilder)">
+            <summary>
+            Appends optional macro fields.
+            </summary>
+            <param name="field">The field.</param>
+            <param name="value">The value.</param>
+            <param name="sourceCodeWords">The source code word length.</param>
+            <param name="macroCodewords">The macro codewords.</param>
         </member>
         <member name="M:ZXing.PDF417.Internal.PDF417.determineDimensions(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32@)">
             <summary>
@@ -7837,7 +9436,7 @@
             <summary>
             Sets the desired aspect ratio for the output image.
             </summary>
-            <param name="v"></param>
+            <param name="ratio"></param>
         </member>
         <member name="M:ZXing.PDF417.Internal.PDF417.setDimensions(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -7871,6 +9470,12 @@
             Sets the disable eci.
             </summary>
             <param name="disabled">if set to <c>true</c> don't add an ECI segment for different encodings than default.</param>
+        </member>
+        <member name="M:ZXing.PDF417.Internal.PDF417.setMetaData(ZXing.PDF417.PDF417MacroMetadata)">
+            <summary>
+            Sets the meta data.
+            </summary>
+            <param name="metadata">The metadata.</param>
         </member>
         <member name="T:ZXing.PDF417.Internal.PDF417ErrorCorrection">
             <summary>
@@ -7919,6 +9524,56 @@
         <member name="T:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel">
             <summary>
             defines the level of the error correction / count of error correction codewords
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L0">
+            <summary>
+            level 0
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L1">
+            <summary>
+            level 1
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L2">
+            <summary>
+            level 2
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L3">
+            <summary>
+            level 3
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L4">
+            <summary>
+            level 4
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L5">
+            <summary>
+            level 5
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L6">
+            <summary>
+            level 6
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L7">
+            <summary>
+            level 7
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.L8">
+            <summary>
+            level 8
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417ErrorCorrectionLevel.AUTO">
+            <summary>
+            automatic selection
             </summary>
         </member>
         <member name="T:ZXing.PDF417.Internal.PDF417HighLevelEncoder">
@@ -8077,7 +9732,56 @@
             <param name="bytes">the message converted to a byte array</param>
             <param name="startpos">the start position within the message</param>
             <param name="encoding"></param>
+            <param name="byteCount"></param>
             <returns>the requested character count</returns>
+        </member>
+        <member name="T:ZXing.PDF417.Internal.PDF417OptionalMacroFields">
+            <summary>
+            Macro PDF417 optional fields.
+            </summary>
+            <remarks>The values are set to their field designator.</remarks>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417OptionalMacroFields.FileName">
+            <summary>
+            The file name.
+            Field designator: 0
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417OptionalMacroFields.SegmentCount">
+            <summary>
+            The segment count field can contain values from 1 to 99,999.
+            Field designator: 1
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417OptionalMacroFields.TimeStamp">
+            <summary>
+            The time stamp of the source file expressed in Unix time.
+            Field designator: 2
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417OptionalMacroFields.Sender">
+            <summary>
+            The sender.
+            Field designator: 3
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417OptionalMacroFields.Addressee">
+            <summary>
+            The addressee.
+            Field designator: 4
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417OptionalMacroFields.FileSize">
+            <summary>
+            The file size in bytes.
+            Field designator: 5
+            </summary>
+        </member>
+        <member name="F:ZXing.PDF417.Internal.PDF417OptionalMacroFields.Checksum">
+            <summary>
+            The 16-bit CRC checksum using the CCITT-16 polynomial.
+            Field designator: 6
+            </summary>
         </member>
         <member name="T:ZXing.PDF417.PDF417EncodingOptions">
             <summary>
@@ -8176,6 +9880,64 @@
         <member name="F:ZXing.PDF417.PDF417Common.CODEWORD_TABLE">
             <summary>
             This table contains to codewords for all symbols.
+            </summary>
+        </member>
+        <member name="T:ZXing.PDF417.PDF417MacroMetadata">
+            <summary>
+            PDF417 Macro meta data.
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.SegmentIndex">
+            <summary>
+            The Segment ID represents the segment of the whole file distributed over different symbols.
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.FileId">
+            <summary>
+            Is the same for each related PDF417 symbol
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.IsLastSegment">
+            <summary>
+            true if it is the last segment
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.SegmentCount">
+            <summary>
+            count of segments, -1 if not set
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.Sender">
+            <summary>
+            sender
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.Addressee">
+            <summary>
+            address
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.FileName">
+            <summary>
+            Filename of the encoded file
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.FileSize">
+            <summary>
+            filesize in bytes of the encoded file
+            returns filesize in bytes, -1 if not set
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.Checksum">
+            <summary>
+            16-bit CRC checksum using CCITT-16
+            returns crc checksum, -1 if not set
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417MacroMetadata.Timestamp">
+            <summary>
+            unix epock timestamp, elapsed seconds since 1970-01-01
+            returns elapsed seconds, -1 if not set
             </summary>
         </member>
         <member name="T:ZXing.PDF417.PDF417Reader">
@@ -8282,6 +10044,11 @@
             <author>Guenther Grau</author>
             </summary>
         </member>
+        <member name="M:ZXing.PDF417.PDF417ResultMetadata.#ctor">
+            <summary>
+            default constructor
+            </summary>
+        </member>
         <member name="P:ZXing.PDF417.PDF417ResultMetadata.SegmentIndex">
             <summary>
             The Segment ID represents the segment of the whole file distributed over different symbols.
@@ -8307,6 +10074,16 @@
             count of segments, -1 if not set
             </summary>
         </member>
+        <member name="P:ZXing.PDF417.PDF417ResultMetadata.Sender">
+            <summary>
+            sender
+            </summary>
+        </member>
+        <member name="P:ZXing.PDF417.PDF417ResultMetadata.Addressee">
+            <summary>
+            address
+            </summary>
+        </member>
         <member name="P:ZXing.PDF417.PDF417ResultMetadata.FileName">
             <summary>
             Filename of the encoded file
@@ -8329,6 +10106,12 @@
             unix epock timestamp, elapsed seconds since 1970-01-01
             returns elapsed seconds, -1 if not set
             </summary>
+        </member>
+        <member name="M:ZXing.PDF417.PDF417ResultMetadata.ToString">
+            <summary>
+            string represenation of that instance
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ZXing.PDF417.PDF417Writer">
             <summary>
@@ -8371,7 +10154,6 @@
             <param name="format">The barcode format to generate</param>
             <param name="width">The preferred width in pixels</param>
             <param name="height">The preferred height in pixels</param>
-            <param name="aspectRatio">The height of a row in the barcode</param>
             <returns>
             The generated barcode as a Matrix of unsigned bytes (0 == black, 255 == white)
             </returns>
@@ -8807,7 +10589,7 @@
         </member>
         <member name="F:ZXing.QrCode.Internal.Mode.TERMINATOR">
             <summary>
-            
+            Not really a mode...
             </summary>
         </member>
         <member name="F:ZXing.QrCode.Internal.Mode.NUMERIC">
@@ -8822,7 +10604,7 @@
         </member>
         <member name="F:ZXing.QrCode.Internal.Mode.STRUCTURED_APPEND">
             <summary>
-            
+            Not supported
             </summary>
         </member>
         <member name="F:ZXing.QrCode.Internal.Mode.BYTE">
@@ -8832,7 +10614,7 @@
         </member>
         <member name="F:ZXing.QrCode.Internal.Mode.ECI">
             <summary>
-            
+            character counts don't apply
             </summary>
         </member>
         <member name="F:ZXing.QrCode.Internal.Mode.KANJI">
@@ -8851,7 +10633,9 @@
             </summary>
         </member>
         <member name="F:ZXing.QrCode.Internal.Mode.HANZI">
-            <summary>See GBT 18284-2000; "Hanzi" is a transliteration of this mode name.</summary>
+            <summary>
+            See GBT 18284-2000; "Hanzi" is a transliteration of this mode name.
+            </summary>
         </member>
         <member name="M:ZXing.QrCode.Internal.Mode.forBits(System.Int32)">
             <summary>
@@ -9317,6 +11101,30 @@
             <returns>true if the proportions of the counts is close enough to the 1/1/3/1/1 ratios
             by finder patterns to be considered a match</returns>
         </member>
+        <member name="M:ZXing.QrCode.Internal.FinderPatternFinder.clearCounts(System.Int32[])">
+            <summary>
+            sets everything to 0
+            </summary>
+            <param name="counts"></param>
+        </member>
+        <member name="M:ZXing.QrCode.Internal.FinderPatternFinder.shiftCounts2(System.Int32[])">
+            <summary>
+            shifts left by 2 index
+            </summary>
+            <param name="stateCount"></param>
+        </member>
+        <member name="M:ZXing.QrCode.Internal.FinderPatternFinder.doClearCounts(System.Int32[])">
+            <summary>
+            sets everything to 0
+            </summary>
+            <param name="counts"></param>
+        </member>
+        <member name="M:ZXing.QrCode.Internal.FinderPatternFinder.doShiftCounts2(System.Int32[])">
+            <summary>
+            shifts left by 2 index
+            </summary>
+            <param name="stateCount"></param>
+        </member>
         <member name="M:ZXing.QrCode.Internal.FinderPatternFinder.crossCheckDiagonal(System.Int32,System.Int32)">
             <summary>
             After a vertical and horizontal scan finds a potential finder pattern, this method
@@ -9550,7 +11358,7 @@
             <param name="content">The content.</param>
             <returns></returns>
         </member>
-        <member name="M:ZXing.QrCode.Internal.Encoder.chooseMode(System.String,System.String)">
+        <member name="M:ZXing.QrCode.Internal.Encoder.chooseMode(System.String,System.Text.Encoding)">
             <summary>
             Choose the best mode by examining the content. Note that 'encoding' is used as a hint;
             if it is Shift_JIS, and the input is only double-byte Kanji, then we return {@link Mode#KANJI}.
@@ -9610,7 +11418,7 @@
             <param name="mode">The mode.</param>
             <param name="bits">The bits.</param>
         </member>
-        <member name="M:ZXing.QrCode.Internal.Encoder.appendBytes(System.String,ZXing.QrCode.Internal.Mode,ZXing.Common.BitArray,System.String)">
+        <member name="M:ZXing.QrCode.Internal.Encoder.appendBytes(System.String,ZXing.QrCode.Internal.Mode,ZXing.Common.BitArray,System.Text.Encoding)">
             <summary>
             Append "bytes" in "mode" mode (encoding) into "bits". On success, store the result in "bits".
             </summary>
@@ -9843,6 +11651,96 @@
             <param name="version">The version.</param>
             <param name="matrix">The matrix.</param>
         </member>
+        <member name="T:ZXing.QrCode.Internal.MinimalEncoder">
+            <summary>
+            * Encoder that encodes minimally
+            *
+            * Algorithm:
+            *
+            * The eleventh commandment was "Thou Shalt Compute" or "Thou Shalt Not Compute" - I forget which(Alan Perilis).
+            *
+            * This implementation computes.As an alternative, the QR-Code specification suggests heuristics like this one:
+            *
+            * If initial input data is in the exclusive subset of the Alphanumeric character set AND if there are less than
+            * [6,7,8] characters followed by data from the remainder of the 8-bit byte character set, THEN select the 8-
+            * bit byte mode ELSE select Alphanumeric mode;
+            *
+            * This is probably right for 99.99% of cases but there is at least this one counter example: The string "AAAAAAa"
+            * encodes 2 bits smaller as ALPHANUMERIC(AAAAAA), BYTE(a) than by encoding it as BYTE(AAAAAAa).
+            * Perhaps that is the only counter example but without having proof, it remains unclear.
+            *
+            * ECI switching:
+            *
+            * In multi language content the algorithm selects the most compact representation using ECI modes.
+            * For example the most compact representation of the string "\u0150\u015C" (O-double-acute, S-circumflex) is
+            * ECI(UTF-8), BYTE(\u0150\u015C) while prepending one or more times the same leading character as in
+            * "\u0150\u0150\u015C", the most compact representation  uses two ECIs so that the string is encoded as
+            * ECI(ISO-8859-2), BYTE(\u0150\u0150), ECI(ISO-8859-3), BYTE(\u015C).
+            *
+            * @author Alex Geller
+            </summary>
+        </member>
+        <member name="M:ZXing.QrCode.Internal.MinimalEncoder.#ctor(System.String,System.Text.Encoding,System.Boolean,ZXing.QrCode.Internal.ErrorCorrectionLevel)">
+            <summary>
+            Creates a MinimalEncoder
+            </summary>
+            <param name="stringToEncode">The string to encode</param>
+            <param name="priorityCharset">The preferred <see cref="T:System.Text.Encoding"/>. When the value of the argument is null, the algorithm
+            *   chooses charsets that leads to a minimal representation.Otherwise the algorithm will use the priority
+            *   charset to encode any character in the input that can be encoded by it if the charset is among the
+            *   supported charsets.</param>
+            <param name="isGS1"> {@code true} if a FNC1 is to be prepended; {@code false} otherwise</param>
+            <param name="ecLevel">The error correction level.</param>
+        </member>
+        <member name="M:ZXing.QrCode.Internal.MinimalEncoder.encode(System.String,ZXing.QrCode.Internal.Version,System.Text.Encoding,System.Boolean,ZXing.QrCode.Internal.ErrorCorrectionLevel)">
+            <summary>
+            Encodes the string minimally
+            </summary>
+            <param name="stringToEncode">The string to encode</param>
+            <param name="version">The preferred <see cref="T:ZXing.QrCode.Internal.Version"/>. A minimal version is computed(see
+             {@link ResultList#getVersion method} when the value of the argument is null</param>
+            <param name="priorityCharset">The preferred { @link Charset}. When the value of the argument is null, the algorithm
+             chooses charsets that leads to a minimal representation.Otherwise the algorithm will use the priority
+            charset to encode any character in the input that can be encoded by it if the charset is among the
+            supported charsets.</param>
+            <param name="isGS1">{ @code true} if a FNC1 is to be prepended;{ @code false}otherwise</param>
+            <param name="ecLevel">The error correction level.</param>
+            <returns>An instance of { @code ResultList}
+                   representing the minimal solution.
+            @see ResultList#getBits
+            @see ResultList#getVersion
+            @see ResultList#getSize</returns>
+        </member>
+        <member name="P:ZXing.QrCode.Internal.MinimalEncoder.ResultList.Size">
+            <summary>
+            returns the size in bits
+            </summary>
+        </member>
+        <member name="M:ZXing.QrCode.Internal.MinimalEncoder.ResultList.getBits(ZXing.Common.BitArray)">
+            <summary>
+            appends the bits
+            </summary>
+            <param name="bits"></param>
+        </member>
+        <member name="M:ZXing.QrCode.Internal.MinimalEncoder.ResultList.ResultNode.getSize(ZXing.QrCode.Internal.Version)">
+            <summary>
+            returns the size in bits
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ZXing.QrCode.Internal.MinimalEncoder.ResultList.ResultNode.CharacterCountIndicator">
+            <summary>
+            returns the length in characters according to the specification (differs from getCharacterLength() in BYTE mode
+            for multi byte encoded characters)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.QrCode.Internal.MinimalEncoder.ResultList.ResultNode.getBits(ZXing.Common.BitArray)">
+            <summary>
+            appends the bits
+            </summary>
+            <param name="bits"></param>
+        </member>
         <member name="T:ZXing.QrCode.Internal.QRCode">
             <author>satorux@google.com (Satoru Takabayashi) - creator</author>
             <author>dswitkin@google.com (Daniel Switkin) - ported from C++</author>
@@ -9859,7 +11757,7 @@
         </member>
         <member name="P:ZXing.QrCode.Internal.QRCode.Mode">
             <summary>
-            Gets or sets the mode.
+            Gets or sets the mode, not relevant if <see cref="F:ZXing.EncodeHintType.QR_COMPACT"/> is selected.
             </summary>
             <value>
             The mode.
@@ -9945,6 +11843,15 @@
             <summary>
             Specifies the exact version of QR code to be encoded. An integer, range 1 to 40. If the data specified
             cannot fit within the required version, a WriterException will be thrown.
+            </summary>
+        </member>
+        <member name="P:ZXing.QrCode.QrCodeEncodingOptions.QrCompact">
+            <summary>
+            Specifies whether to use compact mode for QR code (type <see cref="T:System.Boolean" />, or "true" or "false"
+            Please note that when compaction is performed, the most compact character encoding is chosen
+            for characters in the input that are not in the ISO-8859-1 character set. Based on experience,
+            some scanners do not support encodings like cp-1256 (Arabic). In such cases the encoding can
+            be forced to UTF-8 by means of the <see cref="P:ZXing.QrCode.QrCodeEncodingOptions.CharacterSet"/> encoding hint.
             </summary>
         </member>
         <member name="T:ZXing.QrCode.QRCodeReader">
@@ -10096,6 +12003,102 @@
             </summary>
             <param name="innerException">The inner exception.</param>
             <param name="message"></param>
+        </member>
+        <member name="T:ZXing.Rendering.AlternateBitmapRenderer">
+            <summary>
+            An alternative <see cref="T:ZXing.Rendering.BitmapRenderer" /> that gives a better looking result for
+            EAN-8, EAN-13, UPC-A and UPC-E barcodes <b>with</b> text.
+            </summary>
+        </member>
+        <member name="T:ZXing.Rendering.AlternateBitmapRenderer.FontVersion">
+            <summary>
+            This renderer uses smaller font versions for UPC labels. This enum stores info for use of that.
+            </summary>
+        </member>
+        <member name="F:ZXing.Rendering.AlternateBitmapRenderer.FontVersion.Small">
+            <summary>
+            Use small version of the font
+            </summary>
+        </member>
+        <member name="F:ZXing.Rendering.AlternateBitmapRenderer.FontVersion.Normal">
+            <summary>
+            Use normal version
+            </summary>
+        </member>
+        <member name="T:ZXing.Rendering.AlternateBitmapRenderer.PrintInfo">
+             <summary>
+             For each type of barcode this struct contains all the info on how to split the text content
+             into blocks and where to print those blocks with respect to the start of the barcode, which
+             is dynamicly determined while printing the bars.
+            
+             A 'real' barcode consists of an start-section, a number of bars of constant width (7 units for
+             EAN and UPC codes), optionally a middle-section and another number of bars, and and end-section.
+             Start-section, middle-section and end-section may have different widths.
+             E.g. an EAN-13 baecode has a 3 units wide start, 6 bars of 7 wide, a 5 wide middle-section
+             anothers 6 bars of 7 wide and a 3 wide end-section for a total of 95 units.
+             </summary>
+        </member>
+        <member name="F:ZXing.Rendering.AlternateBitmapRenderer.PrintInfo.TextLength">
+            <summary>Required length of text</summary>
+        </member>
+        <member name="F:ZXing.Rendering.AlternateBitmapRenderer.PrintInfo.Units">
+            <summary>Total width of barcode in units</summary>
+        </member>
+        <member name="F:ZXing.Rendering.AlternateBitmapRenderer.PrintInfo.TextIndex">
+            <summary>Start of a text block in contents</summary>
+        </member>
+        <member name="F:ZXing.Rendering.AlternateBitmapRenderer.PrintInfo.Version">
+            <summary>Which font to use for block</summary>
+        </member>
+        <member name="F:ZXing.Rendering.AlternateBitmapRenderer.PrintInfo.PrintIndex">
+            <summary>Index in barcode units for printing. If -1, align before barcode</summary>
+        </member>
+        <member name="F:ZXing.Rendering.AlternateBitmapRenderer.PrintInfo.PrintWidth">
+            <summary>Width of block to clear in barcode units</summary>
+        </member>
+        <member name="M:ZXing.Rendering.AlternateBitmapRenderer.#cctor">
+            <summary>
+            Static constructor, sets defaults
+            </summary>
+        </member>
+        <member name="M:ZXing.Rendering.AlternateBitmapRenderer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ZXing.Rendering.AlternateBitmapRenderer"/> class.
+            </summary>
+        </member>
+        <member name="M:ZXing.Rendering.AlternateBitmapRenderer.Render(ZXing.Common.BitMatrix,ZXing.BarcodeFormat,System.String,ZXing.Common.EncodingOptions)">
+            <summary>
+            Overrides the drawing methods for EAN-8, EAN-13, UPC-A and UPC-E barcodes.
+            For other types it chains to the original renderer.
+            </summary>
+            <param name="matrix">The matrix with the pre-rendered data.</param>
+            <param name="format">The <see cref="T:ZXing.BarcodeFormat" />.</param>
+            <param name="content">The textual description of the code.</param>
+            <param name="options">The options for rendering.</param>
+            <returns>A Windows Bitmap containing the barcode.</returns>
+        </member>
+        <member name="M:ZXing.Rendering.AlternateBitmapRenderer.printTexts(System.Drawing.Graphics,System.String,ZXing.Rendering.AlternateBitmapRenderer.PrintInfo,System.Drawing.Font,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws the text part of the barcode bitmap.
+            </summary>
+            <param name="canvas">The grapics context to draw on.</param>
+            <param name="content">Barcode text</param>
+            <param name="info">Print specifications</param>
+            <param name="font">The selected font</param>
+            <param name="start">Position of first a bar in pixels</param>
+            <param name="end">Last position of a bar in pixels</param>
+            <param name="top">Top of text in pixels</param>
+            <param name="height">Height of text in pixels</param>
+            <returns>Success</returns>
+            <throws><see cref="T:System.ArgumentException" /> when no space for required text.</throws>
+        </member>
+        <member name="M:ZXing.Rendering.AlternateBitmapRenderer.contentGroups(System.String,ZXing.Rendering.AlternateBitmapRenderer.PrintInfo)">
+            <summary>
+            Split content in seperate groups for pretty printing
+            </summary>
+            <param name="content">The content string</param>
+            <param name="info">The printing info</param>
+            <returns>One or more content group strings</returns>
         </member>
         <member name="T:ZXing.Rendering.BitmapRenderer">
             <summary>
@@ -10261,6 +12264,16 @@
         <member name="T:ZXing.Rendering.SvgRenderer">
             <summary>
             Renders a barcode into a Svg image
+            </summary>
+        </member>
+        <member name="F:ZXing.Rendering.SvgRenderer.DefaultFontName">
+            <summary>
+            the default font name if nothing else is set (Arial)
+            </summary>
+        </member>
+        <member name="F:ZXing.Rendering.SvgRenderer.DefaultFontSize">
+            <summary>
+            the default font size if nothing else is set (10)
             </summary>
         </member>
         <member name="P:ZXing.Rendering.SvgRenderer.Foreground">
@@ -10541,6 +12554,12 @@
         <member name="F:ZXing.ResultMetadataType.AZTEC_EXTRA_METADATA">
             <summary>
             Aztec-specific metadata
+            </summary>
+        </member>
+        <member name="F:ZXing.ResultMetadataType.SYMBOLOGY_IDENTIFIER">
+            <summary>
+            Barcode Symbology Identifier.
+            Note: According to the GS1 specification the identifier may have to replace a leading FNC1/GS character when prepending to the barcode content.
             </summary>
         </member>
         <member name="T:ZXing.ResultPoint">
