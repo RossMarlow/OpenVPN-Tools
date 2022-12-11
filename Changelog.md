@@ -7,7 +7,7 @@
     - Host key cache is used to verify the SSO connection
   - Updated PuTTY SSO to use the cached host key
   - Add & Remove MAC/UUID merged into the same button with a user prompt upon click for Add or Remove
-  - Capibility added to delete a user from the OpenVPN Access Server
+  - Capability added to delete a user from the OpenVPN Access Server
   - Fixed the bug where launched Notepad windows appear empty (Windows 11 issue)
   - Outputs previously forced to open in Notepad will now use the user's default text handler
 
