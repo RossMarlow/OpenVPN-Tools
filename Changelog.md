@@ -10,6 +10,7 @@
   - Capability added to delete a user from the OpenVPN Access Server
   - Fixed the bug where launched Notepad windows appear empty (Windows 11 issue)
   - Outputs previously forced to open in Notepad will now use the user's default text handler
+  - Private key file is automatically selected (if one with the server's hostname exists in the default private key directory)
 
 1.1.8.0
   - Implented automatic MAC address formatting. If a MAC is entered with dashes rather than colons, and/or capital letters it's automatically re-formatted correctly
